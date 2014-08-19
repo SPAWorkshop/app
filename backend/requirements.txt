@@ -1,0 +1,2 @@
+git+git://github.com/django/django@1.7c2
+nodeenv==0.11.0
