@@ -39,6 +39,8 @@ INSTALLED_APPS = (
 
     'django_extensions',
     'rest_framework',
+
+    'talks',
 )
 
 MIDDLEWARE_CLASSES = (
