@@ -4,8 +4,8 @@ angular.module('lightningtalks', ['ngResource', 'ngRoute'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'partials/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'partials/session-list.html',
+        controller: 'SessionListCtrl'
       })
       .otherwise({
         redirectTo: '/'
