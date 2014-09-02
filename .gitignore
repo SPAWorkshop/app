@@ -8,3 +8,4 @@ frontend/.sass-cache
 frontend/app/bower_components
 
 .idea
+backend/.db.sqlite3

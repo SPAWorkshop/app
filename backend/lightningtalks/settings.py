@@ -36,6 +36,11 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'django_extensions',
+    'rest_framework',
+
+    'talks',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -59,7 +64,7 @@ WSGI_APPLICATION = 'lightningtalks.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, '.db.sqlite3'),
     }
 }
 
@@ -81,3 +86,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# REST Framework
+REST_FRAMEWORK = {
+    'DEFAULT_MODEL_SERIALIZER_CLASS':
+        'rest_framework.serializers.HyperlinkedModelSerializer',
+
+    # TODO: Update this setting once we have auth in place
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny'
+    ]
+}
