@@ -5,3 +5,4 @@ gnureadline==6.3.3
 ipython==2.2.0
 nodeenv==0.11.0
 six==1.7.3
+django-cors-headers==0.13
