@@ -1,3 +1,7 @@
-<ul ng-repeat="session in sessions">
-  <li>{{ session.name }} - {{ session.starts_at }}, max slots: {{ session.max_slots}}, slot time: {{ session.default_slot_time }}</li>
+<ul class="sessions" ng-repeat="session in sessions">
+  <li class="sessions__item">
+    <h2>{{ session.name }}</h2>
+    <h3>{{ session.starts_at }}</h3>
+    <p>{{ session.max_slots}} slots, slot time: {{ session.default_slot_time }} min</p>
+  </li>
 </ul>

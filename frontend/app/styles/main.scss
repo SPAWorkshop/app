@@ -1,21 +1,24 @@
 @import '../bower_components/foundation/scss/foundation';
 
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
+.header {
+  @include grid-row();
 }
 
-.panel {
-  margin-top: 50px;
+.header__title {
+  @include grid-column(6);
 }
 
-.th {
-  width: 100%;
-  height: 200px;
+.content {
+  @include grid-row();
+}
 
-  img.right {
-    width: 50px;
-  }
+.sessions {
+  @include grid-column(12);
+  list-style: none;
+  margin-left: 0;
+  margin-bottom: 0;
+}
+
+.sessions__item {
+  @include panel();
 }
