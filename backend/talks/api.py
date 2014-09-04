@@ -1,5 +1,5 @@
 from .models import Session
-from .models import Slot
+from .models import Talk
 from rest_framework.viewsets import ModelViewSet
 
 
@@ -7,5 +7,5 @@ class SessionViewSet(ModelViewSet):
     model = Session
 
 
-class SlotViewSet(ModelViewSet):
-    model = Slot
+class TalkViewSet(ModelViewSet):
+    model = Talk
