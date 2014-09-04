@@ -12,7 +12,7 @@ class Session(models.Model):
         return self.name
 
 
-class Slot(models.Model):
+class Talk(models.Model):
     session = models.ForeignKey(Session, related_name='slots')
     title = models.CharField(max_length=256)
     author = models.CharField(max_length=128)
