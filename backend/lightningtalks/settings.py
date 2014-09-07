@@ -27,6 +27,8 @@ TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = []
 
 
+AUTH_USER_MODEL = 'apiauth.User'
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -41,6 +43,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'corsheaders',
 
+    'apiauth',
     'talks',
 )
 
