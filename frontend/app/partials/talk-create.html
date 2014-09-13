@@ -9,5 +9,5 @@
     <select ng-model="talk.session" ng-options="session.id as session.name for session in sessions"></select>
   </label>
   <small class="error" ng-repeat="error in errors.session">{{ error }}</small>
-  <button class="talk-create__submit"><i class="fa fa-plus-circle"></i> Create</button>
+  <button ladda="inProgress" class="talk-create__submit"><i class="fa fa-plus-circle"></i> Create</button>
 </form>

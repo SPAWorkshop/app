@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lightningtalks')
-  .controller('TalkListCtrl', function ($scope, $resource, $location, auth, flash, messages) {
+  .controller('TalkListCtrl', function ($scope, $resource, $location, auth, toasty, messages) {
 
     auth.shouldBeLoggedIn();
 
@@ -12,8 +12,9 @@ angular.module('lightningtalks')
     fetch();
 
     $scope.delete = function (talk) {
+      talk.deleteInProgress = true;
       $resource('http://127.0.0.1:8000/api/talks/:id', {id: talk.id}).delete().$promise.then(function () {
-        flash(messages.TALK_DELETE_SUCCESS);
+        toasty.pop.success(messages.TALK_DELETE_SUCCESS);
         fetch();
       });
     };
