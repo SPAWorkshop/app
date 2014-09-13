@@ -1,10 +1,17 @@
-<a href="#/">&lt; back to session list</a>
-<a href="#/talk/create">Add talk</a>
-<h2>{{ session.name }}</h2>
-<h3>{{ session.starts_at | date : "medium" }}</h3>
-<ul>
-  <li ng-repeat="talk in session.talks">
+<div class="session__header">
+  <a href="#/" class="session__back"><i class="fa fa-arrow-circle-left"></i> Back</a>
+  <h2>{{ session.name }} <small>{{ session.starts_at | date : "medium" }}</small></h2>
+  <dl class="session__details">
+    <dt class="session__term">Talk time</dt>
+    <dd class="session__definition">{{ session.default_slot_time }} min</dd>
+    <dt class="session__term">Talks</dt>
+    <dd class="session__definition">{{ session.talks.length }}/{{ session.max_slots }}</dd>
+  </dl>
+</div>
+<ul class="talks">
+  <li class="talks__item" ng-repeat="talk in session.talks">
     <h4>{{ talk.title }}</h4>
     <h5>{{ talk.author }}</h5>
   </li>
+  <a href="#/talk/create" class="talks__add"><i class="fa fa-plus-circle"></i> Add talk</a>
 </ul>

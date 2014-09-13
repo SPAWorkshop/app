@@ -1,11 +1,33 @@
 @import '../bower_components/foundation/scss/foundation';
 
+$grey-color: #d8d8d8;
+
 .header {
   @include grid-row();
+  border-bottom: 1px solid $grey-color;
+  margin-bottom: 20px;
 }
 
 .header__title {
   @include grid-column(6);
+}
+
+.header__navigation {
+  @include grid-column($columns: 6, $last_column: true);
+}
+
+.navigation {
+  float: right;
+  @include button-group-container;
+}
+
+.navigation__item {
+  @include button-group-style;
+  border-left: 1px solid white;
+}
+
+.navigation__link {
+  @include button;
 }
 
 .content {
@@ -21,4 +43,58 @@
 
 .sessions__item {
   @include panel();
+}
+
+.sessions__talks {
+  @include button;
+  float: right;
+}
+
+.session__navigation {
+  float: right;
+}
+
+.session__back {
+  @include button;
+  float: right;
+}
+
+.session__header {
+  @include grid-column(12);
+}
+
+.session__term {
+  float: left;
+  margin-bottom: 0;
+}
+
+.session__definition {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  float: left;
+}
+
+.talks {
+  @include grid-column(12);
+  list-style: none;
+  margin-left: 0;
+  margin-bottom: 10px;
+}
+
+.talks__item {
+  @include panel();
+}
+
+.talks__add {
+  @include button;
+  float: right;
+}
+
+.talk-create {
+  @include grid-column(12);
+}
+
+.talk-create__submit {
+  @include button;
 }
