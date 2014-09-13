@@ -11,7 +11,11 @@ angular.module('lightningtalks', ['ngResource', 'ngRoute'])
         templateUrl: 'partials/session-detail.html',
         controller: 'SessionDetailCtrl'
       })
-      .when('/talk/create', {
+      .when('/talks', {
+        templateUrl: 'partials/talk-list.html',
+        controller: 'TalkListCtrl'
+      })
+      .when('/talks/create', {
         templateUrl: 'partials/talk-create.html',
         controller: 'TalkCreateCtrl'
       })

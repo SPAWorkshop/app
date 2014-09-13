@@ -84,11 +84,24 @@ $grey-color: #d8d8d8;
 
 .talks__item {
   @include panel();
+  @include clearfix;
 }
 
 .talks__add {
   @include button;
   float: right;
+}
+
+.talks__actions {
+  float: right;
+}
+
+.talks__edit {
+  @include button;
+}
+
+.talks__delete {
+  @include button;
 }
 
 .talk-create {

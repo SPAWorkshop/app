@@ -1,0 +1,10 @@
+<ul class="talks">
+  <li class="talks__item" ng-repeat="talk in talks">
+    <div class="talks__actions">
+      <a href="#/talks/{{ talk.id}}/update" class="talks__edit"><i class="fa fa-edit"></i> Edit</a>
+      <a href="" class="talks__delete"><i class="fa fa-remove"></i> Delete</a>
+    </div>
+    <h2>{{ talk.title }}</h2>
+  </li>
+  <a href="#/talks/create" class="talks__add"><i class="fa fa-plus-circle"></i> Add talk</a>
+</ul>

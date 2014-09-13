@@ -16,3 +16,6 @@ class TalkViewSet(ModelViewSet):
 
     def pre_save(self, obj):
         obj.author = self.request.user
+
+    def get_queryset(self):
+        return super().get_queryset().filter(author=self.request.user)
