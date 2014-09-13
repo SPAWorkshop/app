@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('lightningtalks', ['ngResource', 'ngRoute'])
+angular.module('lightningtalks', ['ngResource', 'ngRoute', 'ngAnimate', 'flash'])
   .config(function ($routeProvider, $httpProvider) {
     $routeProvider
       .when('/', {

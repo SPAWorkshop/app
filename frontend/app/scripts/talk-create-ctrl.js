@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lightningtalks')
-  .controller('TalkCreateCtrl', function ($scope, $resource, $location, auth) {
+  .controller('TalkCreateCtrl', function ($scope, $resource, $location, auth, flash, messages) {
 
     auth.shouldBeLoggedIn();
 
@@ -9,6 +9,7 @@ angular.module('lightningtalks')
 
     $scope.submit = function () {
       $resource('http://127.0.0.1:8000/api/talks').save($scope.talk).$promise.then(function () {
+        flash(messages.TALK_CREATE_SUCCESS);
         $location.path('/session/' + $scope.talk.session);
       });
     }

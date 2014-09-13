@@ -34,6 +34,7 @@
         </ul>
       </nav>
     </header>
+    <div class="messages slide-down" flash-messages ng-show="messages"></div>
     <div class="content" ng-view></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
@@ -55,6 +56,8 @@
     <script src="bower_components/fastclick/lib/fastclick.js"></script>
     <script src="bower_components/jquery.cookie/jquery.cookie.js"></script>
     <script src="bower_components/jquery-placeholder/jquery.placeholder.js"></script>
+    <script src="bower_components/angular-flash-messages/angular-flash.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -69,6 +72,7 @@
     <script src="scripts/token-storage-service.js"></script>
     <script src="scripts/header-ctrl.js"></script>
     <script src="scripts/talk-list-ctrl.js"></script>
+    <script src="scripts/messages-constant.js"></script>
     <!-- inject:partials -->
     <!-- endinject -->
     <!-- endbuild -->
