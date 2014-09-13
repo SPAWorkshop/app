@@ -27,6 +27,8 @@ TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = []
 
 
+AUTH_USER_MODEL = 'apiauth.User'
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -39,14 +41,16 @@ INSTALLED_APPS = (
 
     'django_extensions',
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
 
+    'apiauth',
     'talks',
 )
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
-     'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -104,3 +108,9 @@ REST_FRAMEWORK = {
 CORS_ORIGIN_WHITELIST = (
     'localhost:3000',
 )
+
+
+# =============================================================================
+# Emails
+# =============================================================================
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
