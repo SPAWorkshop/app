@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('lightningtalks')
-  .controller('HeaderCtrl', function ($scope, $resource, $location, auth, flash, messages) {
+  .controller('HeaderCtrl', function ($scope, $resource, $location, auth, toasty, messages) {
     $scope.isUserLoggedIn = function () {
       return auth.isLoggedIn();
     };
 
     $scope.logout = function () {
-      flash(messages.LOGOUT_SUCCESS);
+      toasty.pop.success(messages.LOGOUT_SUCCESS);
       auth.logout();
     };
 

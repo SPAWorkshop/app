@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lightningtalks')
-  .service('auth', function($window, tokenStorage, $resource, $location, flash, messages) {
+  .service('auth', function($window, tokenStorage, $resource, $location, toasty, messages) {
     this.user = null;
 
     this.fetch = function() {
@@ -26,7 +26,7 @@ angular.module('lightningtalks')
         if (tokenStorage.has()) {
           return this.fetch();
         } else {
-          flash([{text: messages.LOGIN_REQUIRED, level: 'warning'}]);
+          toasty.pop.warning(messages.LOGIN_REQUIRED);
           return $location.path('/login');
         }
       }

@@ -9,6 +9,7 @@
 
     <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="bower_components/angular-toasty/css/ng-toasty.css">
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
 
@@ -34,7 +35,7 @@
         </ul>
       </nav>
     </header>
-    <div class="messages slide-down" flash-messages ng-show="messages"></div>
+    <toasty-container></toasty-container>
     <div class="content" ng-view></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
@@ -56,8 +57,8 @@
     <script src="bower_components/fastclick/lib/fastclick.js"></script>
     <script src="bower_components/jquery.cookie/jquery.cookie.js"></script>
     <script src="bower_components/jquery-placeholder/jquery.placeholder.js"></script>
-    <script src="bower_components/angular-flash-messages/angular-flash.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-toasty/js/ng-toasty.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
