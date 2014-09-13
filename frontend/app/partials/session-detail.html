@@ -1,4 +1,7 @@
-<div class="session__header">
+<div class="loader" ng-hide="session.$resolved">
+  <img class="loader__image" src="images/loading-spin.svg">
+</div>
+<div class="session__header" ng-show="session.$resolved">
   <a href="#/" class="session__back"><i class="fa fa-arrow-circle-left"></i> Back</a>
   <h2>{{ session.name }} <small>{{ session.starts_at | date : "medium" }}</small></h2>
   <dl class="session__details">

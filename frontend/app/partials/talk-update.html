@@ -1,4 +1,7 @@
-<form class="talk-create" ng-submit="submit()">
+<div class="loader" ng-hide="talk.$resolved">
+  <img class="loader__image" src="images/loading-spin.svg">
+</div>
+<form class="talk-create" ng-show="talk.$resolved" ng-submit="submit()">
   <h2>Update talk</h2>
   <small class="error" ng-repeat="error in errors.non_field_errors">{{ error }}</small>
   <label ng-class="{error: errors.title}">Title

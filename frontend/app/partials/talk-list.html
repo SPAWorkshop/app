@@ -1,4 +1,7 @@
-<ul class="talks">
+<div class="loader" ng-hide="talks.$resolved">
+  <img class="loader__image" src="images/loading-spin.svg">
+</div>
+<ul class="talks" ng-show="talks.$resolved">
   <li class="talks__item" ng-repeat="talk in talks">
     <div class="talks__actions">
       <a href="#/talks/{{ talk.id}}" class="talks__edit"><i class="fa fa-edit"></i> Edit</a>

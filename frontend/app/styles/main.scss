@@ -159,3 +159,13 @@ $grey-color: #d8d8d8;
     messages-enter 250ms ease-out,
     messages-leave 500ms 3s ease;
 }
+
+.loader {
+  @include grid-column(12);
+  padding: 50px;
+  text-align: center;
+}
+
+.loader__image {
+  width: 100px;
+}
