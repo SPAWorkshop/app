@@ -13,7 +13,7 @@ class Session(models.Model):
 
 
 class Talk(models.Model):
-    session = models.ForeignKey(Session, related_name='slots')
+    session = models.ForeignKey(Session, related_name='talks')
     title = models.CharField(max_length=256)
     author = models.CharField(max_length=128)
     created_at = models.DateTimeField(default=timezone.now)
