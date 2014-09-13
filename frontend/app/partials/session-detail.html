@@ -1,0 +1,9 @@
+<a href="#/">&lt; back to session list</a>
+<h2>{{ session.name }}</h2>
+<h3>{{ session.starts_at | date : "medium" }}</h3>
+<ul>
+  <li ng-repeat="talk in session.talks">
+    <h4>{{ talk.title }}</h4>
+    <h5>{{ talk.author }}</h5>
+  </li>
+</ul>
