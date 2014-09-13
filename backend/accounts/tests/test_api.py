@@ -1,5 +1,5 @@
-from apiauth import constants
-from apiauth.models import User
+from accounts import constants
+from accounts.models import User
 from django.core.urlresolvers import reverse
 from rest_framework.test import APITestCase
 from rest_framework.authtoken.models import Token

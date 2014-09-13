@@ -27,7 +27,7 @@ TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = []
 
 
-AUTH_USER_MODEL = 'apiauth.User'
+AUTH_USER_MODEL = 'accounts.User'
 
 # Application definition
 
@@ -44,7 +44,7 @@ INSTALLED_APPS = (
     'rest_framework.authtoken',
     'corsheaders',
 
-    'apiauth',
+    'accounts',
     'talks',
 )
 

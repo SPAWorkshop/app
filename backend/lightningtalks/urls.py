@@ -4,7 +4,7 @@ from django.conf.urls import url
 from rest_framework import routers
 from talks.api import SessionViewSet
 from talks.api import TalkViewSet
-import apiauth.urls
+import accounts.urls
 
 
 router = routers.DefaultRouter(trailing_slash=False)
@@ -15,5 +15,5 @@ router.register(r'talks', TalkViewSet)
 
 urlpatterns = patterns('',
     url(r'^api/', include(router.urls)),
-    url(r'^api-auth/', include(apiauth.urls)),
+    url(r'^api-auth/', include(accounts.urls)),
 )
