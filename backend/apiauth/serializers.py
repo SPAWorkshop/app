@@ -30,7 +30,7 @@ class LoginUserSerializer(serializers.Serializer):
 
             if user:
                 if not user.is_active:
-                    raise serializers.ValidationError(constants.DISABLE_ACCOUNT_ERROR)
+                    raise serializers.ValidationError(constants.INACTIVE_ACCOUNT_ERROR)
                 attrs['user'] = user
                 return attrs
             else:
