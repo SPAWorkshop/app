@@ -1,6 +1,6 @@
 <ul class="sessions" ng-repeat="session in sessions">
   <li class="sessions__item">
-    <a href="#/session/{{ session.id }}" class="sessions__talks"><i class="fa fa-bullhorn"></i> {{ session.talks.length}}/{{ session.max_slots}} talks</a>
+    <a href="#/session/{{ session.id }}" class="sessions__talks"><i class="fa fa-bullhorn"></i> {{ session.talks.length}}/{{ session.max_talks}} talks</a>
     <h2><a href="#/session/{{ session.id }}">{{ session.name }}</a></h2>
     <h3>{{ session.starts_at | date : "medium" }}</h3>
   </li>
