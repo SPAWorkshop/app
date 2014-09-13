@@ -12,6 +12,8 @@ angular.module('lightningtalks')
         .update({title: $scope.talk.title}).$promise.then(function () {
           flash(messages.TALK_UPDATE_SUCCESS);
           $location.path('/talks');
+      }, function (response) {
+        $scope.errors = response.data;
       });
     }
   });

@@ -7,6 +7,8 @@ angular.module('lightningtalks')
         auth.login(response.token);
         flash(messages.LOGIN_SUCCESS);
         $location.path('/');
+      }, function (response) {
+        $scope.errors = response.data;
       });
     }
   });

@@ -1,10 +1,13 @@
 <form class="registration" ng-submit="submit()">
   <h2>Sing up</h2>
-  <label>Email
+  <small class="error" ng-repeat="error in errors.non_field_errors">{{ error }}</small>
+  <label ng-class="{error: errors.email}">Email
     <input type="text" ng-model="user.email">
   </label>
-  <label>Password
+  <small class="error" ng-repeat="error in errors.email">{{ error }}</small>
+  <label ng-class="{error: errors.password}">Password
     <input type="password" ng-model="user.password">
   </label>
+  <small class="error" ng-repeat="error in errors.password">{{ error }}</small>
   <button>Sing up</button>
 </form>

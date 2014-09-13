@@ -1,10 +1,13 @@
 <form class="talk-create" ng-submit="submit()">
   <h2>Add talk</h2>
-  <label>Title
+  <small class="error" ng-repeat="error in errors.non_field_errors">{{ error }}</small>
+  <label ng-class="{error: errors.title}">Title
     <input type="text" ng-model="talk.title">
   </label>
-  <label>Session
+  <small class="error" ng-repeat="error in errors.title">{{ error }}</small>
+  <label ng-class="{error: errors.session}">Session
     <select ng-model="talk.session" ng-options="session.id as session.name for session in sessions"></select>
   </label>
+  <small class="error" ng-repeat="error in errors.session">{{ error }}</small>
   <button class="talk-create__submit"><i class="fa fa-plus-circle"></i> Create</button>
 </form>
