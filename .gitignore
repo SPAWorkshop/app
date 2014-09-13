@@ -1,5 +1,6 @@
 *.pyc
-backend/db.sqlite3
+.idea
+venv
 
 frontend/node_modules
 frontend/dist
@@ -7,7 +8,4 @@ frontend/.tmp
 frontend/.sass-cache
 frontend/app/bower_components
 
-.idea
 backend/.db.sqlite3
-
-venv
