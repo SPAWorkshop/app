@@ -7,5 +7,6 @@ angular.module('lightningtalks')
     TALK_DELETE_SUCCESS: 'Talk deleted successfully.',
     TALK_UPDATE_SUCCESS: 'Talk updated successfully.',
     LOGIN_SUCCESS: 'You are logged in.',
-    LOGOUT_SUCCESS: 'You are logged out.'
+    LOGOUT_SUCCESS: 'You are logged out.',
+    LOGIN_REQUIRED: 'You need to be logged in.'
   });

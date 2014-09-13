@@ -146,6 +146,9 @@ $grey-color: #d8d8d8;
     &.success {
       @include alert-style($success-color);
     }
+    &.warning {
+      @include alert-style($warning-color);
+    }
   }
 
 }
