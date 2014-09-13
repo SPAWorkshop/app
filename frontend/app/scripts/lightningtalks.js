@@ -19,6 +19,10 @@ angular.module('lightningtalks', ['ngResource', 'ngRoute', 'ngAnimate', 'flash']
         templateUrl: 'partials/talk-create.html',
         controller: 'TalkCreateCtrl'
       })
+      .when('/talks/:id', {
+        templateUrl: 'partials/talk-update.html',
+        controller: 'TalkUpdateCtrl'
+      })
       .when('/registration', {
         templateUrl: 'partials/registration.html',
         controller: 'RegistrationCtrl'
