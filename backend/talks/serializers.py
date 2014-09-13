@@ -11,8 +11,8 @@ class SessionSerializer(ModelSerializer):
             'id',
             'name',
             'starts_at',
-            'max_slots',
-            'default_slot_time',
+            'max_talks',
+            'talk_time',
             'talks',
         )
         depth = 1
@@ -27,5 +27,7 @@ class TalkSerializer(ModelSerializer):
             'title',
             'author',
             'session',
-            'number',
+        )
+        read_only_fields = (
+            'author',
         )

@@ -14,3 +14,5 @@ class TalkViewSet(ModelViewSet):
     model = Talk
     serializer_class = TalkSerializer
 
+    def pre_save(self, obj):
+        obj.author = self.request.user
