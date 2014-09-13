@@ -21,12 +21,15 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <header class="header">
-      <h1 class="header__title"><a href="#/"><i class="fa fa-bolt"></i> Lightning Talks</a></h1>
+    <header class="header" ng-controller="HeaderCtrl">
+      <h1 class="header__title"><a href="#/">Lightning Talks</a></h1>
       <nav class="header__navigation">
         <ul class="navigation">
           <li class="navigation__item"><a href="#/" class="navigation__link"><i class="fa fa-list-ul"></i> Sessions</a></li>
           <li class="navigation__item"><a href="#/talk/create" class="navigation__link"><i class="fa fa-plus-circle"></i> Add talk</a></li>
+          <li ng-hide="isUserLoggedIn()" class="navigation__item"><a href="#/registration" class="navigation__link"><i class="fa fa-user"></i></i> Sign up</a></li>
+          <li ng-hide="isUserLoggedIn()" class="navigation__item"><a href="#/login" class="navigation__link"><i class="fa fa-sign-in"></i></i> Sign in</a></li>
+          <li ng-show="isUserLoggedIn()" class="navigation__item"><button class="navigation__link" ng-click="logout()"><i class="fa fa-sign-out"></i></i> Sign out</button></li>
         </ul>
       </nav>
     </header>
@@ -59,6 +62,11 @@
     <script src="scripts/session-list-ctrl.js"></script>
     <script src="scripts/session-detail-ctrl.js"></script>
     <script src="scripts/talk-create-ctrl.js"></script>
+    <script src="scripts/registration-ctrl.js"></script>
+    <script src="scripts/login-ctrl.js"></script>
+    <script src="scripts/auth-service.js"></script>
+    <script src="scripts/token-storage-service.js"></script>
+    <script src="scripts/header-ctrl.js"></script>
     <!-- inject:partials -->
     <!-- endinject -->
     <!-- endbuild -->

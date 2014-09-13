@@ -9,11 +9,11 @@ $grey-color: #d8d8d8;
 }
 
 .header__title {
-  @include grid-column(6);
+  @include grid-column(4);
 }
 
 .header__navigation {
-  @include grid-column($columns: 6, $last_column: true);
+  @include grid-column($columns: 8, $last_column: true);
 }
 
 .navigation {
@@ -97,4 +97,12 @@ $grey-color: #d8d8d8;
 
 .talk-create__submit {
   @include button;
+}
+
+.registration {
+  @include grid-column(12);
+}
+
+.login {
+  @include grid-column(12);
 }

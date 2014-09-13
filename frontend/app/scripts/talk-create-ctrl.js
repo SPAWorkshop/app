@@ -1,7 +1,10 @@
 'use strict';
 
 angular.module('lightningtalks')
-  .controller('TalkCreateCtrl', function ($scope, $resource, $location) {
+  .controller('TalkCreateCtrl', function ($scope, $resource, $location, auth) {
+
+    auth.shouldBeLoggedIn();
+
     $scope.sessions = $resource('http://127.0.0.1:8000/api/sessions').query();
 
     $scope.submit = function () {
