@@ -107,3 +107,9 @@ REST_FRAMEWORK = {
 CORS_ORIGIN_WHITELIST = (
     'localhost:3000',
 )
+
+
+# =============================================================================
+# Emails
+# =============================================================================
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
