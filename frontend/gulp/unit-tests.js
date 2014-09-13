@@ -15,6 +15,7 @@ gulp.task('test', function() {
   });
 
   var testFiles = bowerDeps.js.concat([
+    'app/scripts/lightningtalks.js',
     'app/scripts/**/*.js',
     'test/unit/**/*.js'
   ]);
