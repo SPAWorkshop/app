@@ -11,6 +11,10 @@ angular.module('lightningtalks', ['ngResource', 'ngRoute'])
         templateUrl: 'partials/session-detail.html',
         controller: 'SessionDetailCtrl'
       })
+      .when('/talk/create', {
+        templateUrl: 'partials/talk-create.html',
+        controller: 'TalkCreateCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

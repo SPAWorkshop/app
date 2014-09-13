@@ -1,6 +1,7 @@
 from .models import Session
 from .models import Talk
 from .serializers import SessionSerializer
+from .serializers import TalkSerializer
 from rest_framework.viewsets import ModelViewSet
 
 
@@ -11,3 +12,5 @@ class SessionViewSet(ModelViewSet):
 
 class TalkViewSet(ModelViewSet):
     model = Talk
+    serializer_class = TalkSerializer
+

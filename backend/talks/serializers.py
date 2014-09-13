@@ -1,4 +1,5 @@
 from .models import Session
+from .models import Talk
 from rest_framework.serializers import ModelSerializer
 
 
@@ -15,3 +16,16 @@ class SessionSerializer(ModelSerializer):
             'talks',
         )
         depth = 1
+
+
+class TalkSerializer(ModelSerializer):
+
+    class Meta:
+        model = Talk
+        fields = (
+            'id',
+            'title',
+            'author',
+            'session',
+            'number',
+        )
