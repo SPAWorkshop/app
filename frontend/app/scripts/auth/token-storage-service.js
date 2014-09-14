@@ -1,18 +1,18 @@
 'use strict';
 angular.module('lightningtalks')
   .service('tokenStorage', function($window) {
-    var TOKEN_KEY = 'auth_token';
+    this.TOKEN_KEY = 'auth_token';
 
     this.set = function(token) {
-      return $window.localStorage.setItem(TOKEN_KEY, token);
+      return $window.localStorage.setItem(this.TOKEN_KEY, token);
     };
 
     this.remove = function() {
-      return $window.localStorage.removeItem(TOKEN_KEY);
+      return $window.localStorage.removeItem(this.TOKEN_KEY);
     };
 
     this.get = function() {
-      return $window.localStorage.getItem(TOKEN_KEY);
+      return $window.localStorage.getItem(this.TOKEN_KEY);
     };
 
     this.has = function() {
