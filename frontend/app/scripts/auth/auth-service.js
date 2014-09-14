@@ -9,25 +9,25 @@ angular.module('lightningtalks')
 
     this.login = function(token) {
       tokenStorage.set(token);
-      return this.fetch();
+      this.fetch();
     };
 
     this.logout = function() {
       tokenStorage.remove();
-      return $location.path('/');
+      $location.path('/');
     };
 
     this.isLoggedIn = function() {
-      return tokenStorage.has();
+      tokenStorage.has();
     };
 
     this.shouldBeLoggedIn = function() {
       if (this.user == null) {
         if (tokenStorage.has()) {
-          return this.fetch();
+          this.fetch();
         } else {
           toasty.pop.warning(messages.LOGIN_REQUIRED);
-          return $location.path('/login');
+          $location.path('/login');
         }
       }
     };
