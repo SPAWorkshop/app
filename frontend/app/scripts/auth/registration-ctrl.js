@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('lightningtalks')
-  .controller('RegistrationCtrl', function ($scope, $resource, $location, toasty, messages) {
+  .controller('RegistrationCtrl', function ($scope, $resource, $location, toasty, messages, settings) {
     $scope.submit = function () {
       $scope.inProgress = true;
-      $resource('http://127.0.0.1:8000/api/auth/register').save($scope.user).$promise.then(function () {
+      $resource(settings.baseURL + '/auth/register').save($scope.user).$promise.then(function () {
         toasty.pop.success(messages.REGISTRATION_SUCCESS);
         $scope.inProgress = false;
         $location.path('/login');

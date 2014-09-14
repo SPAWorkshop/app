@@ -35,7 +35,7 @@ function browserSyncInit(baseDir, files, browser) {
 
 }
 
-gulp.task('serve', ['watch'], function () {
+gulp.task('serve', ['settings:local', 'watch'], function () {
   browserSyncInit([
     'app',
     '.tmp'

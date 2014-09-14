@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('lightningtalks', ['ngResource', 'ngRoute', 'ngAnimate', 'toasty', 'angular-ladda'])
+angular.module('lightningtalks', ['ngResource', 'ngRoute', 'ngAnimate', 'toasty', 'angular-ladda', 'settings'])
   .config(function ($routeProvider, $httpProvider) {
     $routeProvider
       .when('/', {
@@ -35,10 +35,10 @@ angular.module('lightningtalks', ['ngResource', 'ngRoute', 'ngAnimate', 'toasty'
         redirectTo: '/'
       });
     $httpProvider.interceptors.push([
-      '$q', '$location', 'tokenStorage', function($q, $location, tokenStorage) {
+      '$q', '$location', 'tokenStorage', 'settings', function($q, $location, tokenStorage, settings) {
         return {
           request: function(config) {
-            if (config.url.indexOf('http://127.0.0.1:8000') === 0 && tokenStorage.has()) {
+            if (config.url.indexOf(settings.baseURL) === 0 && tokenStorage.has()) {
               config.headers['Authorization'] = "Token " + (tokenStorage.get());
             }
             return config || $q.when(config);
