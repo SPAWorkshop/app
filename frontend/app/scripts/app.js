@@ -4,31 +4,31 @@ angular.module('lightningtalks', ['ngResource', 'ngRoute', 'ngAnimate', 'toasty'
   .config(function ($routeProvider, $httpProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'partials/session-list.html',
+        templateUrl: 'partials/sessions/session-list.html',
         controller: 'SessionListCtrl'
       })
       .when('/session/:id', {
-        templateUrl: 'partials/session-detail.html',
+        templateUrl: 'partials/sessions/session-detail.html',
         controller: 'SessionDetailCtrl'
       })
       .when('/talks', {
-        templateUrl: 'partials/talk-list.html',
+        templateUrl: 'partials/talks/talk-list.html',
         controller: 'TalkListCtrl'
       })
       .when('/talks/create', {
-        templateUrl: 'partials/talk-create.html',
+        templateUrl: 'partials/talks/talk-create.html',
         controller: 'TalkCreateCtrl'
       })
       .when('/talks/:id', {
-        templateUrl: 'partials/talk-update.html',
+        templateUrl: 'partials/talks/talk-update.html',
         controller: 'TalkUpdateCtrl'
       })
       .when('/registration', {
-        templateUrl: 'partials/registration.html',
+        templateUrl: 'partials/auth/registration.html',
         controller: 'RegistrationCtrl'
       })
       .when('/login', {
-        templateUrl: 'partials/login.html',
+        templateUrl: 'partials/auth/login.html',
         controller: 'LoginCtrl'
       })
       .otherwise({
@@ -43,7 +43,7 @@ angular.module('lightningtalks', ['ngResource', 'ngRoute', 'ngAnimate', 'toasty'
             }
             return config || $q.when(config);
           },
-          responseError: function(rejection) {
+          responseError:function(rejection) {
             if (rejection.status === 401) {
               tokenStorage.remove();
               $location.path('/');
