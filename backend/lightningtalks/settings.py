@@ -49,6 +49,7 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'lightningtalks.middleware.DebugDelayMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -105,6 +106,8 @@ REST_FRAMEWORK = {
     )
 }
 
+REQUEST_DELAY = 0  # apply delay in seconds to all requests, useful for testing
+
 CORS_ORIGIN_WHITELIST = (
     'localhost:3000',
 )
@@ -114,3 +117,9 @@ CORS_ORIGIN_WHITELIST = (
 # Emails
 # =============================================================================
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass

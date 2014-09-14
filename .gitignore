@@ -9,3 +9,4 @@ frontend/.sass-cache
 frontend/app/bower_components
 
 backend/.db.sqlite3
+backend/lightningtalks/local_settings.sample.py
