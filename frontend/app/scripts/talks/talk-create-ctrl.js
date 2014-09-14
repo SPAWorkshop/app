@@ -12,10 +12,10 @@ angular.module('lightningtalks')
       $resource('http://127.0.0.1:8000/api/talks').save($scope.talk).$promise.then(function () {
         $scope.inProgress = false;
         toasty.pop.success(messages.TALK_CREATE_SUCCESS);
-        $location.path('/session/' + $scope.talk.session);
+        $location.path('/talks');
       }, function (response) {
         $scope.inProgress = false;
         $scope.errors = response.data;
       });
-    }
+    };
   });
