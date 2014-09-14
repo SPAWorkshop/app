@@ -21,7 +21,7 @@ login = LoginView.as_view()
 
 class ProfileView(generics.RetrieveAPIView):
     http_method_names = ['get', 'options']
-    # default permission_classes are configured at settings
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = serializers.UserCreateSerializer
 
     def get_object(self):
