@@ -163,3 +163,27 @@ class TestLogin(APITestCase):
         })
         self.assertEqual(response.status_code, 400)
         self.assertIn('password', response.data)
+
+
+class TestProfile(APITestCase):
+
+    def setUp(self):
+        self.url = reverse('profile')
+
+    def test_profile(self):
+        user = User.objects.create_user('joe@doe.com', 's3cr3t')
+        token, created = Token.objects.get_or_create(user=user)
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
+
+        response = self.client.get(self.url)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertDictEqual(response.data, {
+            'email': 'joe@doe.com',
+        })
+
+    def test_profile_not_authed_user(self):
+        User.objects.create_user('joe@doe.com', 's3cr3t')
+        response = self.client.get(self.url)
+
+        self.assertEqual(response.status_code, 401)

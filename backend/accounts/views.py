@@ -17,3 +17,16 @@ class LoginView(auth_views.ObtainAuthToken):
 
 
 login = LoginView.as_view()
+
+
+class ProfileView(generics.RetrieveAPIView):
+    http_method_names = ['get', 'options']
+    # default permission_classes are configured at settings
+    serializer_class = serializers.UserCreateSerializer
+
+    def get_object(self):
+        if not self.request.user.is_authenticated():
+            return None
+        return self.request.user
+
+profile = ProfileView.as_view()
