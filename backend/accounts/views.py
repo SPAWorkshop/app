@@ -25,8 +25,6 @@ class ProfileView(generics.RetrieveAPIView):
     serializer_class = serializers.UserCreateSerializer
 
     def get_object(self):
-        if not self.request.user.is_authenticated():
-            return None
         return self.request.user
 
 profile = ProfileView.as_view()
