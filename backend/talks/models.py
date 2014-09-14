@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-from apiauth.models import User
+from django.conf import settings
 
 
 class Session(models.Model):
@@ -16,7 +16,7 @@ class Session(models.Model):
 class Talk(models.Model):
     session = models.ForeignKey(Session, related_name='talks')
     title = models.CharField(max_length=256)
-    author = models.ForeignKey(User)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL)
     created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
