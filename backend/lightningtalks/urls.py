@@ -14,6 +14,6 @@ router.register(r'talks', TalkViewSet)
 
 
 urlpatterns = patterns('',
+    url(r'^api/auth/', include(accounts.urls)),
     url(r'^api/', include(router.urls)),
-    url(r'^api-auth/', include(accounts.urls)),
 )
