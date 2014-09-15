@@ -1,7 +1,7 @@
 # SPA workshop application
 
 This is application which will be developed during SPA workshop. To run both
-parts of application(frontend and backend) you have to prepare Python
+parts of application (frontend and backend) you have to prepare Python
 [virtualenv](http://virtualenv.readthedocs.org) with all requirements. First
 of all we need to install Python 3.4 and Git.
 
@@ -38,7 +38,9 @@ Clone SPA workshop repository (inside `spaworkshop` directory):
 
     ~/spaworkshop $ git clone git@github.com:SPAWorkshop/app.git
     
-Create Python virtual environment:
+Create Python virtual environment (you
+will find more info about virtualenv installation and usage
+[here](http://tutorial.djangogirls.org/django_installation/README.html)):
 
     ~/spaworkshop $ python3 -m venv workshopenv
     
@@ -50,9 +52,7 @@ Install Python requirements:
 
      ~/spaworkshop (workshopenv) $ pip install -r app/backend/requirements.txt
      
-Create JavaScript virtual envirnoment inside Python virtual envirnoment (you
-will find more info about virtualenv installation and usage
-[here](http://tutorial.djangogirls.org/django_installation/README.html)):
+Create JavaScript virtual envirnoment inside Python virtual environment:
 
      ~/spaworkshop (workshopenv) $ nodeenv -p
      
@@ -69,3 +69,26 @@ Installl frontend application requirements:
     ~/spaworkshop/app/frontend (workshopenv) $ bower install
 
 That's all!
+
+## Run backend application
+
+Create local database:
+
+    ~/spaworkshop/app/backend (workshopenv) $ ./manage.py migrate
+
+
+Fill database wih testing data:
+
+    ~/spaworkshop/app/backend (workshopenv) $ ./manage.py filldb
+
+
+Run development server:
+
+    ~/spaworkshop/app/backend (workshopenv) $ ./manage.py runserver
+
+
+## Run frontend application
+
+Run development server (in another terminal):
+
+    ~/spaworkshop/app/fronted (workshopenv) $ gulp serve
