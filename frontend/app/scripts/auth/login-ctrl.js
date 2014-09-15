@@ -13,5 +13,5 @@ angular.module('lightningtalks')
         $scope.inProgress = false;
         $scope.errors = response.data;
       });
-    }
+    };
   });
