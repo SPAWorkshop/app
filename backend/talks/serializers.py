@@ -30,4 +30,5 @@ class TalkSerializer(ModelSerializer):
         )
         read_only_fields = (
             'author',
+            'session',
         )
