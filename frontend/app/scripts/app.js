@@ -39,7 +39,7 @@ angular.module('lightningtalks', ['ngResource', 'ngRoute', 'ngAnimate', 'toasty'
         return {
           request: function(config) {
             if (config.url.indexOf(settings.baseURL) === 0 && tokenStorage.has()) {
-              config.headers['Authorization'] = "Token " + (tokenStorage.get());
+              config.headers.Authorization = 'Token ' + (tokenStorage.get());
             }
             return config || $q.when(config);
           },

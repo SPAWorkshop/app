@@ -16,6 +16,6 @@ angular.module('lightningtalks')
     };
 
     this.has = function() {
-      return ($window.localStorage != null) && (this.get() != null);
+      return ($window.localStorage !== null) && (this.get() !== null);
     };
 });
