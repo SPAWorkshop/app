@@ -1,9 +1,9 @@
 # SPA workshop application
 
 This is application which will be developed during SPA workshop. To run both
-parts of application(frontend and backend) you have to prepare Python
-[virtualenv](http://virtualenv.readthedocs.org)with all requirements. First
- of all we need to install Python 3.4 and Git.
+parts of application(frontend and backend) you have to prepare
+Python [virtualenv](http://virtualenv.readthedocs.org)with all requirements. First
+of all we need to install Python 3.4 and Git.
 
 ## Install Python
 
