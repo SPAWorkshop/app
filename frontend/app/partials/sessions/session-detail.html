@@ -8,7 +8,10 @@
     <dt class="session__term">Talk time</dt>
     <dd class="session__definition">{{ session.talk_time }} min</dd>
     <dt class="session__term">Talks</dt>
-    <dd class="session__definition">{{ session.talks.length }}/{{ session.max_talks }}</dd>
+    <dd class="session__definition" ng-class="">
+        <span ng-class="{'mark-alert': session.maxTalksReached()}">
+            {{ session.talks.length }}/{{ session.max_talks }}
+        </span></dd>
   </dl>
 </div>
 <ul class="talks">

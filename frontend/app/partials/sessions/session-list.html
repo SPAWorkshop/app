@@ -3,7 +3,9 @@
 </div>
 <ul class="sessions" ng-show="sessions.$resolved" ng-repeat="session in sessions">
   <li class="sessions__item">
-    <a href="#/session/{{ session.id }}" class="sessions__talks"><i class="fa fa-bullhorn"></i> {{ session.talks.length}}/{{ session.max_talks}} talks</a>
+    <a href="#/session/{{ session.id }}" class="sessions__talks"><i class="fa fa-bullhorn"></i>
+        <span ng-class="{'mark-alert': session.maxTalksReached()}">{{ session.talks.length }}/{{ session.max_talks }}</span>
+        talks</a>
     <h2><a href="#/session/{{ session.id }}">{{ session.name }}</a></h2>
     <h3>{{ session.starts_at | date : "medium" }}</h3>
   </li>

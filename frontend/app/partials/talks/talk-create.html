@@ -9,6 +9,7 @@
   </label>
   <small class="error" ng-repeat="error in errors.title">{{ error }}</small>
   <label ng-class="{error: errors.session}">Session
+    <!-- Task: filter out sessions that have already maximum number of talks -->
     <select ng-model="talk.session" ng-options="session.id as session.name for session in sessions"></select>
   </label>
   <small class="error" ng-repeat="error in errors.session">{{ error }}</small>
