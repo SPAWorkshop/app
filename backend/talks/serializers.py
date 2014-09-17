@@ -1,9 +1,9 @@
 from .models import Session
 from .models import Talk
-from rest_framework.serializers import ModelSerializer
+from rest_framework import serializers
 
 
-class SessionSerializer(ModelSerializer):
+class SessionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Session
@@ -18,7 +18,7 @@ class SessionSerializer(ModelSerializer):
         depth = 1
 
 
-class TalkSerializer(ModelSerializer):
+class TalkSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Talk
@@ -32,3 +32,16 @@ class TalkSerializer(ModelSerializer):
             'author',
             'session',
         )
+
+
+class TalkCreateSerializer(TalkSerializer):
+
+    class Meta(TalkSerializer.Meta):
+        read_only_fields = ['author']
+
+    def validate(self, attrs):
+        session = attrs['session']
+        if session.talks.count() >= session.max_talks:
+            msg = 'Maximum talks reached for this session'
+            raise serializers.ValidationError(msg)
+        return attrs
