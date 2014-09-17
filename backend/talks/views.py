@@ -11,6 +11,19 @@ class SessionViewSet(ModelViewSet):
     serializer_class = SessionSerializer
 
 
+session_list = SessionViewSet.as_view({
+    'get': 'list',
+    'post': 'create',
+})
+
+
+session_detail = SessionViewSet.as_view({
+    'get': 'retrieve',
+    'post': 'partial_update',
+    'delete': 'delete',
+})
+
+
 class TalkViewSet(ModelViewSet):
     model = Talk
     serializer_class = TalkSerializer
