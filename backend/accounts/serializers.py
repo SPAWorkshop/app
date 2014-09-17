@@ -8,11 +8,15 @@ class UserCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.User
-        fields = ['email', 'password']
+        fields = ['email', 'password', 'first_name', 'last_name']
         write_only_fields = ['password']  # use another enpoint to change pwd
 
     def restore_object(self, attrs, instance=None):
-        user = models.User(email=attrs['email'])
+        user = models.User(
+            email=attrs['email'],
+            first_name=attrs['first_name'],
+            last_name=attrs['last_name'],
+        )
         user.set_password(attrs['password'])
         return user
 

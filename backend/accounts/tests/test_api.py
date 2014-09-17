@@ -21,11 +21,15 @@ class TestRegisterToLoginFlow(APITestCase):
         response = self.client.post(self.url, {
             'email': 'joe@doe.com',
             'password': 's3cr3t',
+            'first_name': 'Joe',
+            'last_name': 'Doe',
         })
 
-        self.assertEqual(response.status_code, 201)
+        self.assertEqual(response.status_code, 201, response.data)
         user = User.objects.get(email='joe@doe.com')
         self.assertTrue(user.check_password('s3cr3t'))
+        self.assertTrue(user.first_name, 'Joe')
+        self.assertTrue(user.last_name, 'Doe')
 
     def test_register_user_exists(self):
         """
@@ -33,11 +37,13 @@ class TestRegisterToLoginFlow(APITestCase):
         - expect HTTP 400 (cannot register user that already exists)
         - expect 'email' in returned json
         """
-        User.objects.create_user('joe@doe.com', 's3cr3t')
+        User.objects.create_user('joe@doe.com', 'Joe', 'Doe', 's3cr3t')
 
         response = self.client.post(self.url, {
             'email': 'joe@doe.com',
             'password': 's3cret3',
+            'first_name': 'Joe',
+            'last_name': 'Doe',
         })
 
         self.assertEqual(response.status_code, 400)
@@ -52,33 +58,24 @@ class TestRegisterToLoginFlow(APITestCase):
         response = self.client.post(self.url, {
             'email': 'joe@doe',
             'password': 's3cret3',
+            'first_name': 'Joe',
+            'last_name': 'Doe',
         })
         self.assertEqual(response.status_code, 400)
         self.assertIn('email', response.data)
 
-    def test_register_missing_email(self):
+    def test_register_missing_fields(self):
         """
-        - send password to /register (no email)
+        - send no data to /register
         - expect HTTP 400
         - expect 'email' in returned json
         """
-        response = self.client.post(self.url, {
-            'password': 's3cret3',
-        })
+        response = self.client.post(self.url, {})
         self.assertEqual(response.status_code, 400)
         self.assertIn('email', response.data)
-
-    def test_register_missing_password(self):
-        """
-        - send email to /register (no password)
-        - expect HTTP 400
-        - expect 'password' in returned json
-        """
-        response = self.client.post(self.url, {
-            'email': 'joe@doe.com',
-        })
-        self.assertEqual(response.status_code, 400)
         self.assertIn('password', response.data)
+        self.assertIn('first_name', response.data)
+        self.assertIn('last_name', response.data)
 
 
 class TestLogin(APITestCase):
@@ -95,7 +92,7 @@ class TestLogin(APITestCase):
           calls)
         - check that authtoken.Token was created for the user
         """
-        user = User.objects.create_user('joe@doe.com', 's3cr3t')
+        user = User.objects.create_user('joe@doe.com', 'Joe', 'Doe', 's3cr3t')
 
         response = self.client.post(self.url, {
             'email': 'joe@doe.com',
@@ -114,7 +111,7 @@ class TestLogin(APITestCase):
         - expect HTTP 400
         - expect 'non_TODO' in returned json
         """
-        User.objects.create_user('joe@doe.com', 's3cr3t')
+        User.objects.create_user('joe@doe.com', 'Joe', 'Doe', 's3cr3t')
         response = self.client.post(self.url, {
             'email': 'joe@doe.com',
             'password': 'secret',
@@ -130,7 +127,7 @@ class TestLogin(APITestCase):
         - send user's email and password to /login
         - expect HTTP 400 and 'non_field_errors' in returned json
         """
-        User.objects.create_user('joe@doe.com', 's3cr3t', is_active=False)
+        User.objects.create_user('joe@doe.com', 'Joe', 'Doe', 's3cr3t', is_active=False)
         response = self.client.post(self.url, {
             'email': 'joe@doe.com',
             'password': 's3cr3t',
@@ -171,7 +168,7 @@ class TestProfile(APITestCase):
         self.url = reverse('profile')
 
     def test_profile(self):
-        user = User.objects.create_user('joe@doe.com', 's3cr3t')
+        user = User.objects.create_user('joe@doe.com', 'Joe', 'Doe', 's3cr3t')
         token, created = Token.objects.get_or_create(user=user)
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
 
@@ -180,10 +177,12 @@ class TestProfile(APITestCase):
         self.assertEqual(response.status_code, 200)
         self.assertDictEqual(response.data, {
             'email': 'joe@doe.com',
+            'first_name': 'Joe',
+            'last_name': 'Doe',
         })
 
     def test_profile_not_authed_user(self):
-        User.objects.create_user('joe@doe.com', 's3cr3t')
+        User.objects.create_user('joe@doe.com', 'Joe', 'Doe', 's3cr3t')
         response = self.client.get(self.url)
 
         self.assertEqual(response.status_code, 401)

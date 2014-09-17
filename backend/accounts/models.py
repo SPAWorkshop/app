@@ -6,8 +6,11 @@ from django.db import models
 
 class UserManager(BaseUserManager):
 
-    def create_user(self, email, password, **kwargs):
-        user = self.model(email=email, **kwargs)
+    def create_user(self, email, first_name, last_name, password, **kwargs):
+        user = self.model(email=email,
+                          first_name=first_name,
+                          last_name=last_name,
+                          **kwargs)
         user.set_password(password)
         user.save()
         return user
@@ -22,6 +25,8 @@ class User(PermissionsMixin, AbstractBaseUser):
     is_active = models.BooleanField(default=True, db_index=True)
     is_staff = models.BooleanField(default=False, db_index=True)
     first_logged_at = models.DateTimeField(null=True, blank=True)
+    first_name = models.CharField(max_length=64)
+    last_name = models.CharField(max_length=64)
 
     USERNAME_FIELD = 'email'
 
