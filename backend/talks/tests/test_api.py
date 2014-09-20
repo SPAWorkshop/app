@@ -19,6 +19,17 @@ class TestTalk(APITestCase):
         )
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
 
+    def test_list(self):
+        Talk.objects.create(title='T1', author=self.user, session=self.session)
+        Talk.objects.create(title='T2', author=self.user, session=self.session)
+        jane = User.objects.create_user('jane@doe.com', 'Jane', 'Doe', 'jd')
+        Talk.objects.create(title='T3', author=jane, session=self.session)
+
+        response = self.client.get(reverse('talk-list'))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(set([t['title'] for t in response.data]),
+                         set(['T1', 'T2']))
+
     def test_create(self):
         response = self.client.post(reverse('talk-list'), {
             'session': self.session.id,
