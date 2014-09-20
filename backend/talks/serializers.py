@@ -15,6 +15,9 @@ class SessionSerializer(serializers.ModelSerializer):
             'talk_time',
             'talks',
         )
+        read_only_fields = (
+            'talks',
+        )
         depth = 1
 
 

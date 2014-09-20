@@ -7,6 +7,77 @@ from talks.models import Session
 from talks.models import Talk
 
 
+class TestSesssionAPI(APITestCase):
+
+    def setUp(self):
+        self.user = User.objects.create_user('joe@doe.com', 'Joe', 'Doe', 'pwd')
+        self.admin = User.objects.create_user('admin@foo.com', 'Admin', '', 'pwd',
+                                              is_staff=True)
+        self.token = Token.objects.create(user=self.user)
+        self.admin_token = Token.objects.create(user=self.admin)
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
+
+        Session.objects.create(name='S1', starts_at=utc_datetime(2014, 10, 15, 19))
+        Session.objects.create(name='S2', starts_at=utc_datetime(2014, 10, 16, 19))
+        Session.objects.create(name='S3', starts_at=utc_datetime(2014, 10, 17, 19))
+
+    def test_list(self):
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
+        response = self.client.get(reverse('session-list'))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(set([s['name'] for s in response.data]),
+                         set(['S1', 'S2', 'S3']))
+
+    def test_list_unauthorized(self):
+        response = self.client.get(reverse('session-list'))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(set([s['name'] for s in response.data]),
+                         set(['S1', 'S2', 'S3']))
+
+    def test_create_admin_allowed(self):
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.admin_token.key)
+        response = self.client.post(reverse('session-list'), {
+            'name': 'LH Session',
+            'starts_at': '2014-10-20T20:00:00Z',
+        })
+        self.assertEqual(response.status_code, 201, response.data)
+
+    def test_create_should_fail_for_normal_user(self):
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
+        response = self.client.post(reverse('session-list'), {
+            'name': 'LH Session',
+            'starts_at': '2014-10-20T20:00:00Z',
+        })
+        self.assertEqual(response.status_code, 403, response.data)
+
+    def test_get(self):
+        session = Session.objects.get(name='S1')
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
+        url = reverse('session-detail', kwargs={'pk': session.pk})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200, response.data)
+
+    def test_get_unauthorized(self):
+        session = Session.objects.get(name='S1')
+        url = reverse('session-detail', kwargs={'pk': session.pk})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200, response.data)
+
+    def test_update_should_fail_for_normal_user(self):
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
+        session = Session.objects.get(name='S1')
+        url = reverse('session-detail', kwargs={'pk': session.pk})
+        response = self.client.post(url, {'name': 'Foo sessions'})
+        self.assertEqual(response.status_code, 403, response.data)
+
+    def test_delete_should_fail_for_normal_user(self):
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
+        session = Session.objects.get(name='S1')
+        url = reverse('session-detail', kwargs={'pk': session.pk})
+        response = self.client.delete(url, {'name': 'Foo sessions'})
+        self.assertEqual(response.status_code, 403, response.data)
+
+
 class TestTalkAPI(APITestCase):
 
     def setUp(self):

@@ -3,6 +3,7 @@ from .models import Talk
 from .serializers import SessionSerializer
 from .serializers import TalkSerializer
 from .serializers import TalkCreateSerializer
+from .permissions import IsAdminOrReadOnly
 from django.core.exceptions import PermissionDenied
 from rest_framework import viewsets
 
@@ -10,6 +11,7 @@ from rest_framework import viewsets
 class SessionViewSet(viewsets.ModelViewSet):
     model = Session
     serializer_class = SessionSerializer
+    permission_classes = [IsAdminOrReadOnly]
 
 
 session_list = SessionViewSet.as_view({
@@ -21,7 +23,7 @@ session_list = SessionViewSet.as_view({
 session_detail = SessionViewSet.as_view({
     'get': 'retrieve',
     'post': 'partial_update',
-    'delete': 'delete',
+    'delete': 'destroy',
 })
 
 
