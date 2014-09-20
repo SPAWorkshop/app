@@ -7,7 +7,7 @@ from talks.models import Session
 from talks.models import Talk
 
 
-class TestTalk(APITestCase):
+class TestTalkAPI(APITestCase):
 
     def setUp(self):
         self.user = User.objects.create_user('joe@doe.com', 'Joe', 'Doe', 'pwd')
