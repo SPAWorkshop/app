@@ -4,10 +4,10 @@ from .serializers import SessionSerializer
 from .serializers import TalkSerializer
 from .serializers import TalkCreateSerializer
 from django.core.exceptions import PermissionDenied
-from rest_framework.viewsets import ModelViewSet
+from rest_framework import viewsets
 
 
-class SessionViewSet(ModelViewSet):
+class SessionViewSet(viewsets.ModelViewSet):
     model = Session
     serializer_class = SessionSerializer
 
@@ -25,7 +25,7 @@ session_detail = SessionViewSet.as_view({
 })
 
 
-class TalkViewSet(ModelViewSet):
+class TalkViewSet(viewsets.ModelViewSet):
     model = Talk
     serializer_class = TalkSerializer
 
