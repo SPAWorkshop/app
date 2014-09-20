@@ -41,6 +41,14 @@ class TestTalk(APITestCase):
         talk = Talk.objects.get(title='Joe Talk')
         self.assertEqual(talk.author, self.user)
 
+    def test_create_unauthorized(self):
+        self.client.credentials()  # clear headers
+        response = self.client.post(reverse('talk-list'), {
+            'session': self.session.id,
+            'title': 'Joe Talk',
+        })
+        self.assertEqual(response.status_code, 403)
+
     def test_create_cannot_exceed_over_session_limit(self):
         Talk.objects.create(title='T1', author=self.user, session=self.session)
         Talk.objects.create(title='T2', author=self.user, session=self.session)

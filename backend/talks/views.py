@@ -3,6 +3,7 @@ from .models import Talk
 from .serializers import SessionSerializer
 from .serializers import TalkSerializer
 from .serializers import TalkCreateSerializer
+from django.core.exceptions import PermissionDenied
 from rest_framework.viewsets import ModelViewSet
 
 
@@ -33,6 +34,11 @@ class TalkViewSet(ModelViewSet):
 
     def get_queryset(self):
         return super().get_queryset().filter(author=self.request.user)
+
+    def create(self, request):
+        if not request.user.is_authenticated():
+            raise PermissionDenied("Only authorized users may create talks")
+        return super().create(request)
 
 
 class TalkListViewSet(TalkViewSet):
