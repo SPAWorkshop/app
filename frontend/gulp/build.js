@@ -1,21 +1,21 @@
 'use strict';
 
 var gulp = require('gulp');
+var yargs = require('yargs');
 
 var $ = require('gulp-load-plugins')({
   pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license']
 });
 
 gulp.task('styles', function () {
-  // remove next line if you want to build SCSS scripts
-  return 0;
-
-  return gulp.src('app/styles/main.scss')
-    .pipe($.plumber())
-    .pipe($.rubySass({style: 'expanded'}))
-    .pipe($.autoprefixer('last 1 version'))
-    .pipe(gulp.dest('.tmp/styles'))
-    .pipe($.size());
+  if (yargs.argv.buildScss) {
+    return gulp.src('app/styles/main.scss')
+      .pipe($.plumber())
+      .pipe($.rubySass({style: 'expanded'}))
+      .pipe($.autoprefixer('last 1 version'))
+      .pipe(gulp.dest('app/styles'))
+      .pipe($.size());
+  }
 });
 
 gulp.task('scripts', function () {
