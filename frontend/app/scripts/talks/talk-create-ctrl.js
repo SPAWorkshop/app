@@ -2,7 +2,6 @@
 
 angular.module('lightningtalks')
   .controller('TalkCreateCtrl', function ($scope, $resource, $location, auth, toasty, messages, Session, Talk) {
-
     auth.shouldBeLoggedIn();
 
     $scope.sessions = Session.query();
