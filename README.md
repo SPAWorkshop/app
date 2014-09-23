@@ -60,7 +60,8 @@ Install JavaScript global development requirements:
     
     ~/spaworkshop (workshopenv) $ ./workshopenv/bin/npm install -g bower gulp
     
-Install JavaScript local development requirements:
+Install JavaScript local development requirements (don't worry about `node-gyp`
+installation errors - it's optional dependency):
 
     ~/spaworkshop/app/frontend (workshopenv) $ ../../workshopenv/bin/npm install
 
@@ -89,6 +90,6 @@ Run development server:
 
 ## Run frontend application
 
-Run development server (in another terminal):
+Run development server (in another terminal, remember to activate virtualenv):
 
     ~/spaworkshop/app/fronted (workshopenv) $ ../../workshopenv/bin/gulp serve
