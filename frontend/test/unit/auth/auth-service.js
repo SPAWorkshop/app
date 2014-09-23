@@ -8,6 +8,7 @@ describe('auth', function(){
 
   beforeEach(inject(function(_auth_, _$location_) {
     auth = _auth_;
+    auth.logout();
     $location = _$location_;
   }));
 
