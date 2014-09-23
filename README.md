@@ -54,19 +54,19 @@ Install Python requirements:
      
 Create JavaScript virtual envirnoment inside Python virtual environment:
 
-     ~/spaworkshop (workshopenv) $ nodeenv -p
+     ~/spaworkshop (workshopenv) $ ./workshopenv/bin/nodeenv -p
      
 Install JavaScript global development requirements:
     
-    ~/spaworkshop (workshopenv) $ npm install -g bower gulp
+    ~/spaworkshop (workshopenv) $ ./workshopenv/bin/npm install -g bower gulp
     
 Install JavaScript local development requirements:
 
-    ~/spaworkshop/app/frontend (workshopenv) $ npm install
+    ~/spaworkshop/app/frontend (workshopenv) $ ../../workshopenv/bin/npm install
 
 Installl frontend application requirements:
 
-    ~/spaworkshop/app/frontend (workshopenv) $ bower install
+    ~/spaworkshop/app/frontend (workshopenv) $ ../../workshopenv/bin/bower install
 
 That's all!
 
@@ -91,4 +91,4 @@ Run development server:
 
 Run development server (in another terminal):
 
-    ~/spaworkshop/app/fronted (workshopenv) $ gulp serve
+    ~/spaworkshop/app/fronted (workshopenv) $ ../../workshopenv/bin/gulp serve
