@@ -7,6 +7,9 @@ var $ = require('gulp-load-plugins')({
 });
 
 gulp.task('styles', function () {
+  // remove next line if you want to build SCSS scripts
+  return 0;
+
   return gulp.src('app/styles/main.scss')
     .pipe($.plumber())
     .pipe($.rubySass({style: 'expanded'}))
