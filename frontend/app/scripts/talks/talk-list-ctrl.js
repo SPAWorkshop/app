@@ -5,17 +5,13 @@ angular.module('lightningtalks')
 
     auth.shouldBeLoggedIn();
 
-    var fetch = function () {
-      $scope.talks = Talk.query();
-    };
-
-    fetch();
+    $scope.talks = Talk.query();
 
     $scope.delete = function (talk) {
       talk.deleteInProgress = true;
       Talk.delete({id: talk.id}).$promise.then(function () {
         toasty.pop.success(messages.TALK_DELETE_SUCCESS);
-        fetch();
+        $scope.talks = Talk.query();
       });
     };
   });
