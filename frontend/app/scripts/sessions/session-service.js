@@ -7,7 +7,7 @@ angular.module('lightningtalks')
     angular.extend(Service.prototype, {
         maxTalksReached: function() {
             if (this.talks) {
-                return (this.talks.length >= this['max_talks']);
+                return (this.talks.length >= this.max_talks);
             }
             return false;
         }
