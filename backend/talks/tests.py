@@ -136,7 +136,10 @@ class TestTalkAPI(APITestCase):
         self.assertDictEqual(response.data, {
             'id': talk.id,
             'title': 'Joe Talk',
-            'session': talk.session_id,
+            'session': {
+                'id': talk.session.id,
+                'name': talk.session.name,
+            },
             'author': {
                 'first_name': 'Joe',
                 'last_name': 'Doe',

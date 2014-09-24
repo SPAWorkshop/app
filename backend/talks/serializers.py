@@ -26,14 +26,32 @@ class TalkSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(msg)
         return attrs
 
+    def transform_session(self, obj, value):
+        # this makes serializer return dictionary when *returning* object,
+        # while preserves possibility to pass simple session.id when performing
+        # create/update
+        return {
+            'id': obj.session_id,
+            'name': obj.session.name,
+        }
+
 
 class TalkDetailSerializer(TalkSerializer):
     class Meta(TalkSerializer.Meta):
         read_only_fields = ['id', 'session']
 
 
+class SessionTalkSerializer(TalkSerializer):
+    """
+    Same as TalkSerializer but without session field. When listing talks at
+    Session we don't need each talk to contain session information after all.
+    """
+    class Meta(TalkSerializer.Meta):
+        fields = ['id', 'title', 'author']
+
+
 class SessionSerializer(serializers.ModelSerializer):
-    talks = TalkSerializer(many=True)
+    talks = SessionTalkSerializer(many=True)
 
     class Meta:
         model = Session

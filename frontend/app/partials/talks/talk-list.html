@@ -9,6 +9,7 @@
         <button class="talks__delete" ladda="talk.deleteInProgress" ng-click="delete(talk)"><i class="fa fa-remove"></i> Delete</button>
       </div>
       <h2>{{ talk.title }}</h2>
+      Session: <a href="#/session/{{ talk.session.id }}">{{ talk.session.name }}</a>
     </li>
   </ul>
   <p ng-show="talks.length === 0">No sessions yet!</p>
