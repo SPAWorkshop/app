@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lightningtalks')
-  .controller('TalkCreateCtrl', function ($scope, $resource, $location, auth, toasty, messages, Session, Talk) {
+  .controller('TalkCreateCtrl', function ($scope, $location, auth, toasty, messages, Session, Talk) {
     auth.shouldBeLoggedIn();
 
     $scope.sessions = Session.query();
