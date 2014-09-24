@@ -124,13 +124,32 @@ class TestTalkAPI(APITestCase):
         self.assertEqual(response.status_code, 400, response.data)
         self.assertIn('session', response.data)
 
+    def test_get(self):
+        talk = Talk.objects.create(title='Joe Talk',
+                                   author=self.user,
+                                   session=self.session)
+
+        url = reverse('talk-detail', kwargs={'pk': talk.id})
+        response = self.client.get(url)
+
+        self.assertEqual(response.status_code, 200, response.data)
+        self.assertDictEqual(response.data, {
+            'id': talk.id,
+            'title': 'Joe Talk',
+            'session': talk.session_id,
+            'author': {
+                'first_name': 'Joe',
+                'last_name': 'Doe',
+            },
+        })
+
     def test_update(self):
         talk = Talk.objects.create(title='Joe Talk',
                                    author=self.user,
                                    session=self.session)
 
         url = reverse('talk-detail', kwargs={'pk': talk.id})
-        response = self.client.post(url, {
+        response = self.client.put(url, {
             'title': 'TDD',
         })
 
@@ -148,7 +167,7 @@ class TestTalkAPI(APITestCase):
         session2 = Session.objects.create(name='StormTalks', starts_at=start)
 
         url = reverse('talk-detail', kwargs={'pk': talk.id})
-        response = self.client.post(url, {
+        response = self.client.put(url, {
             'title': 'TDD',
             'session': session2.pk,
 
@@ -167,13 +186,13 @@ class TestTalkAPI(APITestCase):
                                    session=self.session)
 
         url = reverse('talk-detail', kwargs={'pk': talk.id})
-        response = self.client.post(url, {
+        response = self.client.put(url, {
             'title': 'TDD',
         })
 
         # we are logged in as Joe so we should not be allowed to change Jane's
         # talk
-        self.assertEqual(response.status_code, 404, response.data)
+        self.assertEqual(response.status_code, 403, response.data)
 
     def test_delete(self):
         talk = Talk.objects.create(title='Joe Talk',
@@ -195,4 +214,4 @@ class TestTalkAPI(APITestCase):
 
         # we are logged in as Joe so we should not be allowed to delete Jane's
         # talk
-        self.assertEqual(response.status_code, 404, response.data)
+        self.assertEqual(response.status_code, 403, response.data)

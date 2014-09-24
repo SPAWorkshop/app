@@ -1,5 +1,6 @@
 from .models import Session
 from .models import Talk
+from accounts.models import User
 from rest_framework import serializers
 
 
@@ -48,3 +49,19 @@ class TalkCreateSerializer(TalkSerializer):
             msg = 'Cannot add more talks to this session'
             raise serializers.ValidationError(msg)
         return attrs
+
+
+class AuthorSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name']
+
+
+class TalkDetailSerializer(serializers.ModelSerializer):
+    author = AuthorSerializer(required=False)
+
+    class Meta:
+        model = Talk
+        fields = ['id', 'title', 'author', 'session']
+        read_only_fields = ['id', 'session']

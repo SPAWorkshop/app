@@ -1,12 +1,11 @@
 from .models import Session
 from .models import Talk
+from .permissions import IsAuthor
 from .serializers import SessionSerializer
-from .serializers import TalkSerializer
+from .serializers import TalkDetailSerializer
 from .serializers import TalkCreateSerializer
-from django.core.exceptions import PermissionDenied
 from rest_framework import generics
 from rest_framework import permissions
-from rest_framework import viewsets
 
 
 class SessionList(generics.ListAPIView):
@@ -21,22 +20,6 @@ class SessionDetail(generics.RetrieveAPIView):
     serializer_class = SessionSerializer
 
 session_detail = SessionDetail.as_view()
-
-
-class TalkViewSet(viewsets.ModelViewSet):
-    model = Talk
-    serializer_class = TalkSerializer
-
-    def pre_save(self, obj):
-        obj.author = self.request.user
-
-    def get_queryset(self):
-        return super().get_queryset().filter(author=self.request.user)
-
-    def create(self, request):
-        if not request.user.is_authenticated():
-            raise PermissionDenied("Only authorized users may create talks")
-        return super().create(request)
 
 
 class TalkList(generics.ListCreateAPIView):
@@ -54,8 +37,14 @@ class TalkList(generics.ListCreateAPIView):
 talk_list = TalkList.as_view()
 
 
-talk_detail = TalkViewSet.as_view({
-    'get': 'retrieve',
-    'post': 'partial_update',
-    'delete': 'destroy',
-})
+class TalkDetail(generics.RetrieveUpdateDestroyAPIView):
+    model = Talk
+    serializer_class = TalkDetailSerializer
+    permission_classes = [IsAuthor]
+
+    def update(self, *args, **kwargs):
+        kwargs['partial'] = True
+        return super().update(*args, **kwargs)
+
+
+talk_detail = TalkDetail.as_view()
