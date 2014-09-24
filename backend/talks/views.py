@@ -43,6 +43,9 @@ class TalkDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthor]
 
     def update(self, *args, **kwargs):
+        # partial update doesn't require all fields to be always present at
+        # the request; so if we want to update only title, we only pass 'title'
+        # and don't have to pass other fields that don't change (like 'author')
         kwargs['partial'] = True
         return super().update(*args, **kwargs)
 
