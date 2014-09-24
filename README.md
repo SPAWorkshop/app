@@ -116,6 +116,8 @@ Python 3.4. Check current Python version inside virtualenv with following
 command: `python --version`.
 3. You are using Ubuntu - check this
 [bug](https://bugs.launchpad.net/ubuntu/+source/python3.4/+bug/1290847).
+In this case you should install [virtualenv](http://virtualenv.readthedocs.org/en/latest/virtualenv.html#installation)
+separately and create virtualenv with command `virtualenv -p python3 workshopenv`.
 
 ### You couldn't install `node.js` inside virtualenv
 
