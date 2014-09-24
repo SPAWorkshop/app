@@ -5,6 +5,7 @@ from .serializers import TalkSerializer
 from .serializers import TalkCreateSerializer
 from django.core.exceptions import PermissionDenied
 from rest_framework import generics
+from rest_framework import permissions
 from rest_framework import viewsets
 
 
@@ -38,14 +39,19 @@ class TalkViewSet(viewsets.ModelViewSet):
         return super().create(request)
 
 
-class TalkListViewSet(TalkViewSet):
+class TalkList(generics.ListCreateAPIView):
+    model = Talk
     serializer_class = TalkCreateSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def pre_save(self, obj):
+        obj.author = self.request.user
+
+    def get_queryset(self):
+        return super().get_queryset().filter(author=self.request.user)
 
 
-talk_list = TalkListViewSet.as_view({
-    'post': 'create',
-    'get': 'list',
-})
+talk_list = TalkList.as_view()
 
 
 talk_detail = TalkViewSet.as_view({

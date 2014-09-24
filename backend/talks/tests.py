@@ -110,7 +110,7 @@ class TestTalkAPI(APITestCase):
             'session': self.session.id,
             'title': 'Joe Talk',
         })
-        self.assertEqual(response.status_code, 403)
+        self.assertEqual(response.status_code, 401)
 
     def test_create_cannot_exceed_over_session_limit(self):
         Talk.objects.create(title='T1', author=self.user, session=self.session)
