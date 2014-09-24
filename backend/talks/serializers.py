@@ -41,8 +41,17 @@ class TalkDetailSerializer(TalkSerializer):
         read_only_fields = ['id', 'session']
 
 
+class SessionTalkSerializer(TalkSerializer):
+    """
+    Same as TalkSerializer but without session field. When listing talks at
+    Session we don't need each talk to contain session information after all.
+    """
+    class Meta(TalkSerializer.Meta):
+        fields = ['id', 'title', 'author']
+
+
 class SessionSerializer(serializers.ModelSerializer):
-    talks = TalkSerializer(many=True)
+    talks = SessionTalkSerializer(many=True)
 
     class Meta:
         model = Session
