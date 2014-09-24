@@ -57,7 +57,7 @@ Install Python requirements:
 
      ~/spaworkshop (workshopenv) $ pip install -r app/backend/requirements.txt
      
-Create JavaScript virtual envirnoment inside Python virtual environment:
+Create JavaScript virtual environment inside Python virtual environment:
 
      ~/spaworkshop (workshopenv) $ ./workshopenv/bin/nodeenv -p
      
@@ -70,7 +70,7 @@ installation errors - it's optional dependency):
 
     ~/spaworkshop/app/frontend (workshopenv) $ ../../workshopenv/bin/npm install
 
-Installl frontend application requirements:
+Install frontend application requirements:
 
     ~/spaworkshop/app/frontend (workshopenv) $ ../../workshopenv/bin/bower install
 
@@ -103,7 +103,7 @@ Run development server (in another terminal, remember to activate virtualenv):
 
 ### There is no `pip` inside your virtualenv
 
-You are trying to install Python requiremnets and you have problem with
+You are trying to install Python requirements and you have problem with
 permissions, e.g.:
 
     OSError: [Errno 13] Permission denied: '/Library/Python/2.7/site-packages/...'
