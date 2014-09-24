@@ -10,5 +10,4 @@ angular.module('lightningtalks')
       toasty.pop.success(messages.LOGOUT_SUCCESS);
       auth.logout();
     };
-
   });

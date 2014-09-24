@@ -2,7 +2,6 @@
 
 angular.module('lightningtalks')
   .service('auth', function($window, tokenStorage, $resource, $location, toasty, messages) {
-
     this.login = function(token) {
       tokenStorage.set(token);
     };
