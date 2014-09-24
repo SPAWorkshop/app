@@ -34,21 +34,13 @@ class TestSesssionAPI(APITestCase):
         self.assertEqual(set([s['name'] for s in response.data]),
                          set(['S1', 'S2', 'S3']))
 
-    def test_create_admin_allowed(self):
-        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.admin_token.key)
-        response = self.client.post(reverse('session-list'), {
-            'name': 'LH Session',
-            'starts_at': '2014-10-20T20:00:00Z',
-        })
-        self.assertEqual(response.status_code, 201, response.data)
-
     def test_create_should_fail_for_normal_user(self):
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
         response = self.client.post(reverse('session-list'), {
             'name': 'LH Session',
             'starts_at': '2014-10-20T20:00:00Z',
         })
-        self.assertEqual(response.status_code, 403, response.data)
+        self.assertEqual(response.status_code, 405, response.data)
 
     def test_get(self):
         session = Session.objects.get(name='S1')
@@ -68,14 +60,14 @@ class TestSesssionAPI(APITestCase):
         session = Session.objects.get(name='S1')
         url = reverse('session-detail', kwargs={'pk': session.pk})
         response = self.client.post(url, {'name': 'Foo sessions'})
-        self.assertEqual(response.status_code, 403, response.data)
+        self.assertEqual(response.status_code, 405, response.data)
 
     def test_delete_should_fail_for_normal_user(self):
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
         session = Session.objects.get(name='S1')
         url = reverse('session-detail', kwargs={'pk': session.pk})
         response = self.client.delete(url, {'name': 'Foo sessions'})
-        self.assertEqual(response.status_code, 403, response.data)
+        self.assertEqual(response.status_code, 405, response.data)
 
 
 class TestTalkAPI(APITestCase):

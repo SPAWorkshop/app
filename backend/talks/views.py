@@ -3,28 +3,23 @@ from .models import Talk
 from .serializers import SessionSerializer
 from .serializers import TalkSerializer
 from .serializers import TalkCreateSerializer
-from .permissions import IsAdminOrReadOnly
 from django.core.exceptions import PermissionDenied
+from rest_framework import generics
 from rest_framework import viewsets
 
 
-class SessionViewSet(viewsets.ModelViewSet):
+class SessionList(generics.ListAPIView):
     model = Session
     serializer_class = SessionSerializer
-    permission_classes = [IsAdminOrReadOnly]
+
+session_list = SessionList.as_view()
 
 
-session_list = SessionViewSet.as_view({
-    'get': 'list',
-    'post': 'create',
-})
+class SessionDetail(generics.RetrieveAPIView):
+    model = Session
+    serializer_class = SessionSerializer
 
-
-session_detail = SessionViewSet.as_view({
-    'get': 'retrieve',
-    'post': 'partial_update',
-    'delete': 'destroy',
-})
+session_detail = SessionDetail.as_view()
 
 
 class TalkViewSet(viewsets.ModelViewSet):
