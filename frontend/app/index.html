@@ -8,6 +8,7 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
     <!-- build:css({.tmp,app}) styles/main.css -->
+    <link rel="stylesheet" href="bower_components/angular/angular-csp.css">
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="bower_components/angular-toasty/css/ng-toasty.css">
     <link rel="stylesheet" href="bower_components/ladda/dist/ladda-themeless.min.css">
@@ -23,7 +24,7 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <header class="header" ng-controller="HeaderCtrl">
+    <header class="header" ng-controller="HeaderCtrl" ng-cloak>
       <h1 class="header__title"><a href="#/">Lightning Talks</a></h1>
       <nav class="header__navigation">
         <ul class="navigation">

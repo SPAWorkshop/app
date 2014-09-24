@@ -8,13 +8,19 @@ angular.module('lightningtalks')
 
     $scope.submit = function () {
       $scope.inProgress = true;
-      Talk.update({id: $routeParams.id}, {title: $scope.talk.title}).$promise.then(function () {
+      var talk = Talk.update({id: $routeParams.id}, {title: $scope.talk.title});
+
+      var onSuccess = function () {
         $scope.inProgress = false;
         toasty.pop.success(messages.TALK_UPDATE_SUCCESS);
         $location.path('/talks');
-      }, function (response) {
+      };
+
+      var onError = function (response) {
         $scope.inProgress = false;
         $scope.errors = response.data;
-      });
+      };
+
+      talk.$promise.then(onSuccess, onError);
     };
   });
