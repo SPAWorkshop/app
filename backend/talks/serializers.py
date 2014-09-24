@@ -42,9 +42,9 @@ class TalkCreateSerializer(TalkSerializer):
     class Meta(TalkSerializer.Meta):
         read_only_fields = ['author']
 
-    def validate(self, attrs):
-        session = attrs['session']
+    def validate_session(self, attrs, field_name):
+        session = attrs[field_name]
         if session.talks.count() >= session.max_talks:
-            msg = 'Maximum talks reached for this session'
+            msg = 'Cannot add more talks to this session'
             raise serializers.ValidationError(msg)
         return attrs

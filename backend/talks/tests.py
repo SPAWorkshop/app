@@ -130,7 +130,7 @@ class TestTalkAPI(APITestCase):
         })
 
         self.assertEqual(response.status_code, 400, response.data)
-        self.assertIn('non_field_errors', response.data)
+        self.assertIn('session', response.data)
 
     def test_update(self):
         talk = Talk.objects.create(title='Joe Talk',
