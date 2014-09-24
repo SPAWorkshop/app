@@ -26,6 +26,15 @@ class TalkSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(msg)
         return attrs
 
+    def transform_session(self, obj, value):
+        # this makes serializer return dictionary when *returning* object,
+        # while preserves possibility to pass simple session.id when performing
+        # create/update
+        return {
+            'id': obj.session_id,
+            'name': obj.session.name,
+        }
+
 
 class TalkDetailSerializer(TalkSerializer):
     class Meta(TalkSerializer.Meta):
