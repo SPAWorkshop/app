@@ -1,13 +1,16 @@
 <div class="loader" ng-hide="talks.$resolved">
   <img class="loader__image" src="images/loading-spin.svg">
 </div>
-<ul class="talks" ng-show="talks.$resolved">
-  <li class="talks__item" ng-repeat="talk in talks">
-    <div class="talks__actions">
-      <a href="#/talks/{{ talk.id}}" class="talks__edit"><i class="fa fa-edit"></i> Edit</a>
-      <button class="talks__delete" ladda="talk.deleteInProgress" ng-click="delete(talk)"><i class="fa fa-remove"></i> Delete</button>
-    </div>
-    <h2>{{ talk.title }}</h2>
-  </li>
+<div class="talks" ng-show="talks.$resolved">
+  <ul class="talks__list">
+    <li class="talks__item" ng-repeat="talk in talks">
+      <div class="talks__actions">
+        <a href="#/talks/{{ talk.id}}" class="talks__edit"><i class="fa fa-edit"></i> Edit</a>
+        <button class="talks__delete" ladda="talk.deleteInProgress" ng-click="delete(talk)"><i class="fa fa-remove"></i> Delete</button>
+      </div>
+      <h2>{{ talk.title }}</h2>
+    </li>
+  </ul>
+  <p ng-show="talks.length === 0">No sessions yet!</p>
   <a href="#/talks/create" class="talks__add"><i class="fa fa-plus-circle"></i> Add talk</a>
-</ul>
+</div>

@@ -41,7 +41,7 @@ Create directory for all workshop files:
 
 Clone SPA workshop repository (inside `spaworkshop` directory):
 
-    ~/spaworkshop $ git clone git@github.com:SPAWorkshop/app.git
+    ~/spaworkshop $ git clone https://github.com/SPAWorkshop/app.git
     
 Create Python virtual environment (you
 will find more info about virtualenv installation and usage
@@ -57,7 +57,8 @@ Install Python requirements:
 
      ~/spaworkshop (workshopenv) $ pip install -r app/backend/requirements.txt
      
-Create JavaScript virtual environment inside Python virtual environment:
+Create JavaScript virtual environment inside Python virtual environment (this
+can take a few minutes):
 
      ~/spaworkshop (workshopenv) $ ./workshopenv/bin/nodeenv -p
      

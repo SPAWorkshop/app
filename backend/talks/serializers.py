@@ -40,7 +40,7 @@ class TalkSerializer(serializers.ModelSerializer):
     def validate_session(self, attrs, field_name):
         session = attrs[field_name]
         if session.talks.count() >= session.max_talks:
-            msg = 'Cannot add more talks to this session'
+            msg = 'Cannot add more talks to this session.'
             raise serializers.ValidationError(msg)
         return attrs
 
