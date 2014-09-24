@@ -18,6 +18,7 @@
   <ul class="talks__list">
     <li class="talks__item" ng-repeat="talk in session.talks">
       <h4>{{ talk.title }}</h4>
+      by <span class="talks__author">{{ talk.author.first_name }} {{ talk.author.last_name }}</span>
     </li>
   </ul>
   <p ng-show="session.talks.length === 0">No talks yet!</p>

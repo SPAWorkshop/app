@@ -4,24 +4,6 @@ from accounts.models import User
 from rest_framework import serializers
 
 
-class SessionSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Session
-        fields = (
-            'id',
-            'name',
-            'starts_at',
-            'max_talks',
-            'talk_time',
-            'talks',
-        )
-        read_only_fields = (
-            'talks',
-        )
-        depth = 1
-
-
 class AuthorSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -48,3 +30,18 @@ class TalkSerializer(serializers.ModelSerializer):
 class TalkDetailSerializer(TalkSerializer):
     class Meta(TalkSerializer.Meta):
         read_only_fields = ['id', 'session']
+
+
+class SessionSerializer(serializers.ModelSerializer):
+    talks = TalkSerializer(many=True)
+
+    class Meta:
+        model = Session
+        fields = (
+            'id',
+            'name',
+            'starts_at',
+            'max_talks',
+            'talk_time',
+            'talks',
+        )
