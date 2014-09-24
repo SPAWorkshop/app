@@ -1,31 +1,39 @@
 from .models import Session
 from .models import Talk
 from .permissions import IsAuthor
-from .serializers import SessionSerializer
-from .serializers import TalkSerializer
-from .serializers import TalkDetailSerializer
+from .serializers import SessionRetrieveSerializer
+from .serializers import TalkListSerializer
+from .serializers import TalkCreateSerializer
+from .serializers import TalkUpdateSerializer
+from .serializers import SessionListSerializer
 from rest_framework import generics
 from rest_framework import permissions
 
 
-class SessionList(generics.ListAPIView):
+class SessionListView(generics.ListAPIView):
     model = Session
-    serializer_class = SessionSerializer
+    serializer_class = SessionListSerializer
 
-session_list = SessionList.as_view()
+session_list = SessionListView.as_view()
 
 
-class SessionDetail(generics.RetrieveAPIView):
+class SessionRetrieveView(generics.RetrieveAPIView):
     model = Session
-    serializer_class = SessionSerializer
+    serializer_class = SessionRetrieveSerializer
 
-session_detail = SessionDetail.as_view()
+session_detail = SessionRetrieveView.as_view()
 
 
-class TalkList(generics.ListCreateAPIView):
+class TalkListCreateView(generics.ListCreateAPIView):
     model = Talk
-    serializer_class = TalkSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = (
+        permissions.IsAuthenticated,
+    )
+
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return TalkCreateSerializer
+        return TalkListSerializer
 
     def pre_save(self, obj):
         obj.author = self.request.user
@@ -34,20 +42,16 @@ class TalkList(generics.ListCreateAPIView):
         return super().get_queryset().filter(author=self.request.user)
 
 
-talk_list = TalkList.as_view()
+talk_list = TalkListCreateView.as_view()
 
 
-class TalkDetail(generics.RetrieveUpdateDestroyAPIView):
+class TalkUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     model = Talk
-    serializer_class = TalkDetailSerializer
-    permission_classes = [IsAuthor]
-
-    def update(self, *args, **kwargs):
-        # partial update doesn't require all fields to be always present at
-        # the request; so if we want to update only title, we only pass 'title'
-        # and don't have to pass other fields that don't change (like 'author')
-        kwargs['partial'] = True
-        return super().update(*args, **kwargs)
+    serializer_class = TalkUpdateSerializer
+    permission_classes = (
+        permissions.IsAuthenticated,
+        IsAuthor,
+    )
 
 
-talk_detail = TalkDetail.as_view()
+talk_detail = TalkUpdateDestroyView.as_view()

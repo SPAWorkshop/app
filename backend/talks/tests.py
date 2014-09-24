@@ -134,16 +134,7 @@ class TestTalkAPI(APITestCase):
 
         self.assertEqual(response.status_code, 200, response.data)
         self.assertDictEqual(response.data, {
-            'id': talk.id,
             'title': 'Joe Talk',
-            'session': {
-                'id': talk.session.id,
-                'name': talk.session.name,
-            },
-            'author': {
-                'first_name': 'Joe',
-                'last_name': 'Doe',
-            },
         })
 
     def test_update(self):
