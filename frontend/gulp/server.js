@@ -25,7 +25,6 @@ function browserSyncInit(baseDir, files, browser) {
   browser = browser === undefined ? 'default' : browser;
 
   browserSync.instance = browserSync.init(files, {
-    startPath: '/index.html',
     server: {
       baseDir: baseDir,
       middleware: proxyMiddleware
@@ -41,7 +40,7 @@ gulp.task('serve', ['settings:local', 'watch'], function () {
     '.tmp'
   ], [
     'app/*.html',
-    '.tmp/styles/**/*.css',
+    'app/styles/**/*.css',
     'app/scripts/**/*.js',
     'app/partials/**/*.html',
     'app/images/**/*'

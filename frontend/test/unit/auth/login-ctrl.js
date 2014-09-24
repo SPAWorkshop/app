@@ -19,7 +19,6 @@ describe('LoginCtrl', function(){
     $httpBackend = _$httpBackend_;
     $location = _$location_;
     auth = _auth_;
-    auth.logout();
     toasty = _toasty_;
     messages = _messages_;
   }));
@@ -52,5 +51,9 @@ describe('LoginCtrl', function(){
     $httpBackend.flush();
     expect(auth.isLoggedIn()).toBe(false);
     expect(scope.errors.email[0]).toBe('error');
+  });
+
+  afterEach(function () {
+    auth.logout();
   });
 });

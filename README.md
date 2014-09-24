@@ -3,7 +3,7 @@
 This is application which will be developed during SPA workshop. To run both
 parts of application (frontend and backend) you have to prepare Python
 [virtualenv](http://virtualenv.readthedocs.org) with all requirements. First
-of all we need to install Python 3.4 and Git.
+of all we need to install Python **3.4** and Git.
 
 ## Install Python
 
@@ -14,6 +14,11 @@ Linux (Ubuntu):
 Mac OS X (with brew):
 
     $ brew install python3
+
+Check Python version - it should be 3.4:
+
+    $ python3 --version
+    Python 3.4.1
 
 For more details you should check this
 [tutorial](http://tutorial.djangogirls.org/python_installation/README.html).
@@ -52,7 +57,7 @@ Install Python requirements:
 
      ~/spaworkshop (workshopenv) $ pip install -r app/backend/requirements.txt
      
-Create JavaScript virtual envirnoment inside Python virtual environment:
+Create JavaScript virtual environment inside Python virtual environment:
 
      ~/spaworkshop (workshopenv) $ ./workshopenv/bin/nodeenv -p
      
@@ -60,11 +65,12 @@ Install JavaScript global development requirements:
     
     ~/spaworkshop (workshopenv) $ ./workshopenv/bin/npm install -g bower gulp
     
-Install JavaScript local development requirements:
+Install JavaScript local development requirements (don't worry about `node-gyp`
+installation errors - it's optional dependency):
 
     ~/spaworkshop/app/frontend (workshopenv) $ ../../workshopenv/bin/npm install
 
-Installl frontend application requirements:
+Install frontend application requirements:
 
     ~/spaworkshop/app/frontend (workshopenv) $ ../../workshopenv/bin/bower install
 
@@ -89,6 +95,39 @@ Run development server:
 
 ## Run frontend application
 
-Run development server (in another terminal):
+Run development server (in another terminal, remember to activate virtualenv):
 
     ~/spaworkshop/app/fronted (workshopenv) $ ../../workshopenv/bin/gulp serve
+
+## Troubleshooting 
+
+### There is no `pip` inside your virtualenv
+
+You are trying to install Python requirements and you have problem with
+permissions, e.g.:
+
+    OSError: [Errno 13] Permission denied: '/Library/Python/2.7/site-packages/...'
+
+There could be many reasons:
+
+1. You are outside virtualenv (check above how to activate virtualenv).
+2. Virtualenv was created with wrong version of Python. You have to use
+Python 3.4. Check current Python version inside virtualenv with following
+command: `python --version`.
+3. You are using Ubuntu - check this
+[bug](https://bugs.launchpad.net/ubuntu/+source/python3.4/+bug/1290847).
+In this case you should install [virtualenv](http://virtualenv.readthedocs.org/en/latest/virtualenv.html#installation)
+separately and create virtualenv with command `virtualenv -p python3 workshopenv`.
+
+### You couldn't install `node.js` inside virtualenv
+
+You are trying to install `node.js` with `nodenv -p` command and you have
+following error:
+
+    OSError: Python >=3.0 virtualenv detected, but no python2 command (required for building node.js) was found
+
+Unfortunately, `nodenv` required `python2` command within your `PATH`. If you
+don't have `python2`, but there is `python2.7`, please create this link:
+
+    $ sudo ln -s `which python2.7` $(dirname `which python2.7`)/python2
+    
