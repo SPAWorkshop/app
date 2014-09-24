@@ -31,9 +31,9 @@
           <li class="navigation__item"><a href="#/" class="navigation__link"><i class="fa fa-list-ul"></i> Sessions</a></li>
           <li class="navigation__item"><a href="#/talks/create" class="navigation__link"><i class="fa fa-plus-circle"></i> Add talk</a></li>
           <li ng-hide="isUserLoggedIn()" class="navigation__item"><a href="#/registration" class="navigation__link"><i class="fa fa-user"></i></i> Sign up</a></li>
-          <li ng-hide="isUserLoggedIn()" class="navigation__item"><a href="#/login" class="navigation__link"><i class="fa fa-sign-in"></i></i> Sign in</a></li>
+          <li ng-hide="isUserLoggedIn()" class="navigation__item"><a href="#/login" class="navigation__link"><i class="fa fa-sign-in"></i></i> Log in</a></li>
           <li ng-show="isUserLoggedIn()" class="navigation__item"><a href="#/talks" class="navigation__link"><i class="fa fa-bullhorn"></i></i> Your talks</a></li>
-          <li ng-show="isUserLoggedIn()" class="navigation__item"><button class="navigation__link" ng-click="logout()"><i class="fa fa-sign-out"></i></i> Sign out</button></li>
+          <li ng-show="isUserLoggedIn()" class="navigation__item"><button class="navigation__link" ng-click="logout()"><i class="fa fa-sign-out"></i></i> Log out</button></li>
         </ul>
       </nav>
     </header>

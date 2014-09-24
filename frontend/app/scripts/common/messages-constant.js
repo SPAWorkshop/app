@@ -4,7 +4,7 @@ angular.module('lightningtalks')
   .constant('messages', {
     REGISTRATION_SUCCESS: {
       title: 'Success!',
-      msg: 'Registration complete - you could now sign in.'
+      msg: 'Registration complete - you could now log in.'
     },
     TALK_CREATE_SUCCESS: {
       title: 'Success!',

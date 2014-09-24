@@ -1,5 +1,5 @@
 <form class="login" ng-submit="submit()">
-  <h2>Sing in</h2>
+  <h2>Log in</h2>
   <small class="error" ng-repeat="error in errors.non_field_errors">{{ error }}</small>
   <label ng-class="{error: errors.email}">Email
     <input type="text" ng-model="user.email">
@@ -9,5 +9,5 @@
     <input type="password" ng-model="user.password">
   </label>
   <small class="error" ng-repeat="error in errors.password">{{ error }}</small>
-  <button ladda="inProgress">Sing in</button>
+  <button ladda="inProgress">Log in</button>
 </form>
