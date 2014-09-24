@@ -1,12 +1,15 @@
 <div class="loader" ng-hide="sessions.$resolved">
   <img class="loader__image" src="images/loading-spin.svg">
 </div>
-<ul class="sessions" ng-show="sessions.$resolved" ng-repeat="session in sessions">
-  <li class="sessions__item">
-    <a href="#/session/{{ session.id }}" class="sessions__talks"><i class="fa fa-bullhorn"></i>
+<div class="sessions" ng-show="sessions.$resolved">
+  <ul class="sessions__list" ng-repeat="session in sessions">
+    <li class="sessions__item">
+      <a href="#/session/{{ session.id }}" class="sessions__talks"><i class="fa fa-bullhorn"></i>
         <span ng-class="{'mark-alert': session.maxTalksReached()}">{{ session.talks.length }}/{{ session.max_talks }}</span>
         talks</a>
-    <h2><a href="#/session/{{ session.id }}">{{ session.name }}</a></h2>
-    <h3>{{ session.starts_at | date : "medium" }}</h3>
-  </li>
-</ul>
+      <h2><a href="#/session/{{ session.id }}">{{ session.name }}</a></h2>
+      <h3>{{ session.starts_at | date : "medium" }}</h3>
+    </li>
+  </ul>
+  <p ng-show="sessions.length === 0">No sessions yet!</p>
+</div>

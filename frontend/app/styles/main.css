@@ -6787,6 +6787,9 @@ th.hide-for-touch {
   padding-right: 0.9375rem;
   width: 100%;
   float: left;
+}
+
+.sessions__list {
   list-style: none;
   margin-left: 0;
   margin-bottom: 0;
@@ -6907,6 +6910,9 @@ th.hide-for-touch {
   padding-right: 0.9375rem;
   width: 100%;
   float: left;
+}
+
+.talks__list {
   list-style: none;
   margin-left: 0;
   margin-bottom: 10px;

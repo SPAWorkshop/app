@@ -9,15 +9,17 @@
     <dd class="session__definition">{{ session.talk_time }} min</dd>
     <dt class="session__term">Talks</dt>
     <dd class="session__definition" ng-class="">
-        <span ng-class="{'mark-alert': session.maxTalksReached()}">
-            {{ session.talks.length }}/{{ session.max_talks }}
-        </span></dd>
+      <span ng-class="{'mark-alert': session.maxTalksReached()}">
+        {{ session.talks.length }}/{{ session.max_talks }}
+      </span></dd>
   </dl>
 </div>
-<ul class="talks">
-  <li class="talks__item" ng-repeat="talk in session.talks">
-    <h4>{{ talk.title }}</h4>
-  </li>
-  <a href="#/talks/create" class="talks__add"
-      ng-show="!session.maxTalksReached()"><i class="fa fa-plus-circle"></i> Add talk</a>
-</ul>
+<div class="talks" ng-show="session.$resolved">
+  <ul class="talks__list">
+    <li class="talks__item" ng-repeat="talk in session.talks">
+      <h4>{{ talk.title }}</h4>
+    </li>
+  </ul>
+  <p ng-show="session.talks.length === 0">No talks yet!</p>
+  <a href="#/talks/create" class="talks__add" ng-show="!session.maxTalksReached()"><i class="fa fa-plus-circle"></i> Add talk</a>
+</div>
