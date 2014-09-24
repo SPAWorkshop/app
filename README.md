@@ -15,6 +15,11 @@ Mac OS X (with brew):
 
     $ brew install python3
 
+Check Python version - it should be 3.4:
+
+    $ python3 --version
+    Python 3.4.1
+
 For more details you should check this
 [tutorial](http://tutorial.djangogirls.org/python_installation/README.html).
 
