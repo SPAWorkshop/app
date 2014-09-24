@@ -22,26 +22,20 @@ class SessionSerializer(serializers.ModelSerializer):
         depth = 1
 
 
+class AuthorSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name']
+
+
 class TalkSerializer(serializers.ModelSerializer):
+    author = AuthorSerializer(required=False)
 
     class Meta:
         model = Talk
-        fields = (
-            'id',
-            'title',
-            'author',
-            'session',
-        )
-        read_only_fields = (
-            'author',
-            'session',
-        )
-
-
-class TalkCreateSerializer(TalkSerializer):
-
-    class Meta(TalkSerializer.Meta):
-        read_only_fields = ['author']
+        fields = ['id', 'title', 'author', 'session']
+        read_only_fields = ['id']
 
     def validate_session(self, attrs, field_name):
         session = attrs[field_name]
@@ -51,17 +45,6 @@ class TalkCreateSerializer(TalkSerializer):
         return attrs
 
 
-class AuthorSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = User
-        fields = ['first_name', 'last_name']
-
-
-class TalkDetailSerializer(serializers.ModelSerializer):
-    author = AuthorSerializer(required=False)
-
-    class Meta:
-        model = Talk
-        fields = ['id', 'title', 'author', 'session']
+class TalkDetailSerializer(TalkSerializer):
+    class Meta(TalkSerializer.Meta):
         read_only_fields = ['id', 'session']

@@ -2,8 +2,8 @@ from .models import Session
 from .models import Talk
 from .permissions import IsAuthor
 from .serializers import SessionSerializer
+from .serializers import TalkSerializer
 from .serializers import TalkDetailSerializer
-from .serializers import TalkCreateSerializer
 from rest_framework import generics
 from rest_framework import permissions
 
@@ -24,7 +24,7 @@ session_detail = SessionDetail.as_view()
 
 class TalkList(generics.ListCreateAPIView):
     model = Talk
-    serializer_class = TalkCreateSerializer
+    serializer_class = TalkSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def pre_save(self, obj):
