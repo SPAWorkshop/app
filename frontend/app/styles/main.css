@@ -6698,6 +6698,13 @@ th.hide-for-touch {
   float: left;
 }
 
+.header__link {
+  color: inherit;
+}
+.header__link:hover {
+  color: inherit;
+}
+
 .header__navigation {
   padding-left: 0.9375rem;
   padding-right: 0.9375rem;
@@ -6818,6 +6825,15 @@ th.hide-for-touch {
 }
 .sessions__item h1.subheader, .sessions__item h2.subheader, .sessions__item h3.subheader, .sessions__item h4.subheader, .sessions__item h5.subheader, .sessions__item h6.subheader {
   line-height: 1.4;
+}
+
+.sessions__link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.sessions__date {
+  color: #6f6f6f;
 }
 
 .sessions__talks {
@@ -6983,6 +6999,14 @@ th.hide-for-touch {
 
 .talks__actions {
   float: right;
+}
+
+.talks__author {
+  color: #6f6f6f;
+}
+
+.talks__session {
+  color: #6f6f6f;
 }
 
 .talks__edit {
