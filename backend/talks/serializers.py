@@ -1,6 +1,5 @@
 from .models import Session
 from .models import Talk
-from accounts.models import User
 from rest_framework import serializers
 
 
@@ -13,46 +12,13 @@ class SessionListSerializer(serializers.ModelSerializer):
             'id',
             'name',
             'starts_at',
-            'max_talks',
             'talk_time',
             'talks_count',
         )
 
 
-class AuthorSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = User
-        fields = (
-            'first_name',
-            'last_name',
-        )
-
-
-class SessionTalkSerializer(serializers.ModelSerializer):
-    author = AuthorSerializer()
-
-    class Meta:
-        model = Talk
-        fields = (
-            'id',
-            'title',
-            'author',
-        )
-
-
-class SessionRetrieveSerializer(serializers.ModelSerializer):
-    talks = SessionTalkSerializer(many=True)
-
-    class Meta:
-        model = Session
-        fields = (
-            'name',
-            'starts_at',
-            'max_talks',
-            'talk_time',
-            'talks',
-        )
+# TODO: TASK I - SESSION DETAILS
+# - create session retrieve serializer
 
 
 class TalkSessionSerializer(serializers.ModelSerializer):
@@ -88,11 +54,9 @@ class TalkCreateSerializer(serializers.ModelSerializer):
         )
 
     def validate_session(self, attrs, field_name):
-        session = attrs[field_name]
-        if session.talks.count() >= session.max_talks:
-            msg = 'Cannot add more talks to this session.'
-            raise serializers.ValidationError(msg)
-        return attrs
+        # TODO: TASK III - LIMIT TALKS
+        # - implement validation
+        pass
 
 
 class TalkUpdateSerializer(serializers.ModelSerializer):

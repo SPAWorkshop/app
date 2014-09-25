@@ -2,5 +2,8 @@
 
 angular.module('lightningtalks')
   .service('Talk', function ($resource, settings) {
-    return $resource(settings.baseURL + '/talks/:id', null, {update: {method: 'PUT'}});
+    /* TODO: TASK IV - UPDATE TALK
+    *  - add PUT method to talk resource
+    */
+    return $resource(settings.baseURL + '/talks/:id');
   });

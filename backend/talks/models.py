@@ -6,8 +6,12 @@ from django.conf import settings
 class Session(models.Model):
     name = models.CharField(max_length=64, default='Lightning Talks')
     starts_at = models.DateTimeField()
-    max_talks = models.PositiveSmallIntegerField(default=10)
     talk_time = models.PositiveSmallIntegerField(default=5)
+
+    # TODO: TASK III - LIMIT TALKS
+    # - add new field (e.g. max_talks)
+    # - create migration file: ./manage.py makemigrations
+    # - run migration: ./manage.py migrate
 
     def __str__(self):
         return self.name

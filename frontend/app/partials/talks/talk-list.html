@@ -1,3 +1,8 @@
+<!--
+  TODO: TASK V - DELETE TALK
+  - bind delete button with controller
+  - add loader to delete button
+-->
 <div class="loader" ng-hide="talks.$resolved">
   <img class="loader__image" src="images/loading-spin.svg">
 </div>
@@ -6,7 +11,7 @@
     <li class="talks__item" ng-repeat="talk in talks">
       <div class="talks__actions">
         <a href="#/talks/{{ talk.id}}" class="talks__edit"><i class="fa fa-edit"></i> Edit</a>
-        <button class="talks__delete" ladda="talk.deleteInProgress" ng-click="delete(talk)"><i class="fa fa-remove"></i> Delete</button>
+        <button class="talks__delete"><i class="fa fa-remove"></i> Delete</button>
       </div>
       <h2>{{ talk.title }}</h2>
       <span class="talks__session">during <a href="#/session/{{ talk.session.id }}">{{ talk.session.name }}</a></span>

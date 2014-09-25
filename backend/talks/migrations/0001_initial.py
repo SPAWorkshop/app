@@ -19,7 +19,6 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, serialize=False, verbose_name='ID', primary_key=True)),
                 ('name', models.CharField(default='Lightning Talks', max_length=64)),
                 ('starts_at', models.DateTimeField()),
-                ('max_talks', models.PositiveSmallIntegerField(default=10)),
                 ('talk_time', models.PositiveSmallIntegerField(default=5)),
             ],
             options={

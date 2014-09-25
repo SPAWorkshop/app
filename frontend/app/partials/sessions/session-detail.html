@@ -1,26 +1,36 @@
-<div class="loader" ng-hide="session.$resolved">
-  <img class="loader__image" src="images/loading-spin.svg">
-</div>
-<div class="session__header" ng-show="session.$resolved">
+<!--
+  TODO: TASK I - SESSION DETAILS
+  - fill template with session data
+  - add loader
+  - display proper message if there are no talks within session
+-->
+<!--
+  TODO: TASK III -  LIMIT TALKS
+  - display maximum number of talks
+  - if session reach maximum number of talks
+    - disable "Add talk" button
+    - mark talks counter with red color (use: mark-alert CSS class)
+-->
+<div class="session__header">
   <a href="#/" class="session__back"><i class="fa fa-arrow-circle-left"></i> Back</a>
-  <h2>{{ session.name }} <small>{{ session.starts_at | date : "medium" }}</small></h2>
+  <h2>#NAME<small>#DATE</small></h2>
   <dl class="session__details">
     <dt class="session__term">Talk time</dt>
-    <dd class="session__definition">{{ session.talk_time }} min</dd>
+    <dd class="session__definition">#TIME min</dd>
     <dt class="session__term">Talks</dt>
-    <dd class="session__definition" ng-class="">
-      <span ng-class="{'mark-alert': session.maxTalksReached()}">
-        {{ session.talks.length }}/{{ session.max_talks }}
+    <dd class="session__definition">
+      <span>
+        #TALKS_COUNT
       </span></dd>
   </dl>
 </div>
-<div class="talks" ng-show="session.$resolved">
+<div class="talks">
   <ul class="talks__list">
-    <li class="talks__item" ng-repeat="talk in session.talks">
-      <h4>{{ talk.title }}</h4>
-      <span class="talks__author">by {{ talk.author.first_name }} {{ talk.author.last_name }}</span>
+    <li class="talks__item">
+      <h4>#TALK_TITLE</h4>
+      <span class="talks__author">by #TALK_AUTHOR</span>
     </li>
   </ul>
-  <p ng-show="session.talks.length === 0">No talks yet!</p>
-  <a href="#/talks/create" class="talks__add" ng-show="!session.maxTalksReached()"><i class="fa fa-plus-circle"></i> Add talk</a>
+  <p>No talks yet!</p>
+  <a href="#/talks/create" class="talks__add"><i class="fa fa-plus-circle"></i> Add talk</a>
 </div>

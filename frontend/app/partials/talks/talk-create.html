@@ -1,17 +1,21 @@
-<div class="loader" ng-hide="sessions.$resolved">
-  <img class="loader__image" src="images/loading-spin.svg">
-</div>
-<form class="talk-create" ng-show="sessions.$resolved" ng-submit="submit()">
+<!--
+  TODO: TASK II - CREATE TALK
+  - bind inputs with controller properties
+  - add form submit handler
+  - add general loader
+  - add button loader
+  - display errors
+-->
+<form class="talk-create">
   <h2>Add talk</h2>
-  <small class="error" ng-repeat="error in errors.non_field_errors">{{ error }}</small>
-  <label ng-class="{error: errors.title}">Title
-    <input type="text" ng-model="talk.title">
+  <small class="error">#NON_FIELD_ERRORS</small>
+  <label>Title
+    <input type="text">
   </label>
-  <small class="error" ng-repeat="error in errors.title">{{ error }}</small>
-  <label ng-class="{error: errors.session}">Session
-    <!-- Task: filter out sessions that have already maximum number of talks -->
-    <select ng-model="talk.session" ng-options="session.id as session.name for session in sessions"></select>
+  <small class="error">#TITLE_ERRORS</small>
+  <label>Session
+    <select></select>
   </label>
-  <small class="error" ng-repeat="error in errors.session">{{ error }}</small>
-  <button ladda="inProgress" class="talk-create__submit">Add</button>
+  <small class="error">#SESSION_ERRORS</small>
+  <button class="talk-create__submit">Add</button>
 </form>

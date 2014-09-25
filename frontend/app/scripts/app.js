@@ -2,14 +2,15 @@
 
 angular.module('lightningtalks', ['ngResource', 'ngRoute', 'ngAnimate', 'toasty', 'angular-ladda', 'settings'])
   .config(function ($routeProvider, $httpProvider) {
+
+    /* TODO: TASK I - SESSION DETAILS
+    *  - configure routing
+    */
+
     $routeProvider
       .when('/', {
         templateUrl: 'partials/sessions/session-list.html',
         controller: 'SessionListCtrl'
-      })
-      .when('/session/:id', {
-        templateUrl: 'partials/sessions/session-detail.html',
-        controller: 'SessionDetailCtrl'
       })
       .when('/talks', {
         templateUrl: 'partials/talks/talk-list.html',

@@ -188,24 +188,5 @@ class TestTalkAPI(APITestCase):
         # talk
         self.assertEqual(response.status_code, 403, response.data)
 
-    def test_delete(self):
-        talk = Talk.objects.create(title='Joe Talk',
-                                   author=self.user,
-                                   session=self.session)
-
-        url = reverse('talk-detail', kwargs={'pk': talk.id})
-        response = self.client.delete(url)
-        self.assertEqual(response.status_code, 204, response.data)
-
-    def test_delete_only_author_can_remove_their_talks(self):
-        jane = User.objects.create_user('jane@doe.com', 'Jane', 'Doe', 'jd')
-        talk = Talk.objects.create(title='Jane Talk',
-                                   author=jane,
-                                   session=self.session)
-
-        url = reverse('talk-detail', kwargs={'pk': talk.id})
-        response = self.client.delete(url)
-
-        # we are logged in as Joe so we should not be allowed to delete Jane's
-        # talk
-        self.assertEqual(response.status_code, 403, response.data)
+    # TODO: TASK V - DELETE TALK
+    # - implement test

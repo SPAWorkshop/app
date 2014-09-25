@@ -1,6 +1,8 @@
 'use strict';
 
 angular.module('lightningtalks')
-  .controller('SessionDetailCtrl', function ($scope, $routeParams, Session) {
-    $scope.session = Session.get({id: $routeParams.id});
+  .controller('SessionDetailCtrl', function () {
+    /* TODO: TASK I - SESSION DETAILS
+    *  - fetch session
+    */
   });

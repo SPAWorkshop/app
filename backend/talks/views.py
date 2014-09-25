@@ -1,7 +1,5 @@
 from .models import Session
 from .models import Talk
-from .permissions import IsAuthor
-from .serializers import SessionRetrieveSerializer
 from .serializers import TalkListSerializer
 from .serializers import TalkCreateSerializer
 from .serializers import TalkUpdateSerializer
@@ -17,11 +15,8 @@ class SessionListView(generics.ListAPIView):
 session_list = SessionListView.as_view()
 
 
-class SessionRetrieveView(generics.RetrieveAPIView):
-    model = Session
-    serializer_class = SessionRetrieveSerializer
-
-session_detail = SessionRetrieveView.as_view()
+# TODO: TASK I - SESSION DETAILS
+# - create view (generics.RetrieveAPIView)
 
 
 class TalkListCreateView(generics.ListCreateAPIView):
@@ -36,7 +31,9 @@ class TalkListCreateView(generics.ListCreateAPIView):
         return TalkListSerializer
 
     def pre_save(self, obj):
-        obj.author = self.request.user
+        # TODO: TASK II - CREATE TALK
+        # - assign current user to newly created talk
+        pass
 
     def get_queryset(self):
         return super().get_queryset().filter(author=self.request.user)
@@ -50,7 +47,8 @@ class TalkUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = TalkUpdateSerializer
     permission_classes = (
         permissions.IsAuthenticated,
-        IsAuthor,
+        # TODO: TASK IV - UPDATE TALK
+        # - create custom permission (allow modify talk only by author)
     )
 
 
