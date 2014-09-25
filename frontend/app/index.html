@@ -33,7 +33,7 @@
           <li ng-hide="isUserLoggedIn()" class="navigation__item"><a href="#/registration" class="navigation__link"><i class="fa fa-user"></i></i> Sign up</a></li>
           <li ng-hide="isUserLoggedIn()" class="navigation__item"><a href="#/login" class="navigation__link"><i class="fa fa-sign-in"></i></i> Log in</a></li>
           <li ng-show="isUserLoggedIn()" class="navigation__item"><a href="#/talks" class="navigation__link"><i class="fa fa-bullhorn"></i></i> Your talks</a></li>
-          <li ng-show="isUserLoggedIn()" class="navigation__item"><button class="navigation__link" ng-click="logout()"><i class="fa fa-sign-out"></i></i> Log out</button></li>
+          <li ng-show="isUserLoggedIn()" class="navigation__item"><a class="navigation__link" ng-click="logout()"><i class="fa fa-sign-out"></i></i> Log out</a></li>
         </ul>
       </nav>
     </header>
