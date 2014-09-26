@@ -17,7 +17,7 @@ class SessionListSerializer(serializers.ModelSerializer):
         )
 
 
-# TODO: TASK I - SESSION DETAILS
+# TODO: TASK 1 - SESSION DETAILS
 # - create session retrieve serializer
 
 
@@ -54,7 +54,7 @@ class TalkCreateSerializer(serializers.ModelSerializer):
         )
 
     def validate_session(self, attrs, field_name):
-        # TODO: TASK III - LIMIT TALKS
+        # TODO: TASK 3 - LIMIT TALKS
         # - implement validation
         pass
 

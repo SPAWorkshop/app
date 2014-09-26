@@ -8,7 +8,7 @@ describe('Registration', function () {
     });
 
     it('should show errors when password is not provided', function() {
-      /* TODO: TASK VII - REGISTRATION E2E test
+      /* TODO: TASK 7 - REGISTRATION E2E test
       *  - implement test
       */
     });

@@ -2,7 +2,7 @@
 
 angular.module('lightningtalks')
   .controller('TalkUpdateCtrl', function () {
-    /* TODO: TASK IV - UPDATE TALK
+    /* TODO: TASK 4 - UPDATE TALK
     *  - fetch talk
     *   - handle errors (forbidden)
     *  - create form submit handler

@@ -1,7 +1,7 @@
 from django.conf.urls import patterns
 from django.conf.urls import url
 
-# TODO: TASK I - SESSION DETAILS
+# TODO: TASK 1 - SESSION DETAILS
 # - configure routing
 
 urlpatterns = patterns('',

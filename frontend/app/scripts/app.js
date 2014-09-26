@@ -3,7 +3,7 @@
 angular.module('lightningtalks', ['ngResource', 'ngRoute', 'ngAnimate', 'toasty', 'angular-ladda', 'settings'])
   .config(function ($routeProvider, $httpProvider) {
 
-    /* TODO: TASK I - SESSION DETAILS
+    /* TODO: TASK 1 - SESSION DETAILS
     *  - configure routing
     */
 

@@ -15,7 +15,7 @@ class SessionListView(generics.ListAPIView):
 session_list = SessionListView.as_view()
 
 
-# TODO: TASK I - SESSION DETAILS
+# TODO: TASK 1 - SESSION DETAILS
 # - create view (generics.RetrieveAPIView)
 
 
@@ -31,7 +31,7 @@ class TalkListCreateView(generics.ListCreateAPIView):
         return TalkListSerializer
 
     def pre_save(self, obj):
-        # TODO: TASK II - CREATE TALK
+        # TODO: TASK 2 - CREATE TALK
         # - assign current user to newly created talk
         pass
 
@@ -47,7 +47,7 @@ class TalkUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = TalkUpdateSerializer
     permission_classes = (
         permissions.IsAuthenticated,
-        # TODO: TASK IV - UPDATE TALK
+        # TODO: TASK 4 - UPDATE TALK
         # - create custom permission (allow modify talk only by author)
     )
 

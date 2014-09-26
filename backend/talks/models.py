@@ -8,7 +8,7 @@ class Session(models.Model):
     starts_at = models.DateTimeField()
     talk_time = models.PositiveSmallIntegerField(default=5)
 
-    # TODO: TASK III - LIMIT TALKS
+    # TODO: TASK 3 - LIMIT TALKS
     # - add new field (e.g. max_talks)
     # - create migration file: ./manage.py makemigrations
     # - run migration: ./manage.py migrate

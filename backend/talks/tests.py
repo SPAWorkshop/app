@@ -188,5 +188,5 @@ class TestTalkAPI(APITestCase):
         # talk
         self.assertEqual(response.status_code, 403, response.data)
 
-    # TODO: TASK V - DELETE TALK
+    # TODO: TASK 5 - DELETE TALK
     # - implement test

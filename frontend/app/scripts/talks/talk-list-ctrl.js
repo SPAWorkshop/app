@@ -6,7 +6,7 @@ angular.module('lightningtalks')
 
     $scope.talks = Talk.query();
 
-    /* TODO: TASK V - DELETE TALK
+    /* TODO: TASK 5 - DELETE TALK
     *  - implement delete function
     */
   });

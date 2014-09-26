@@ -27,7 +27,7 @@ describe('TalkListCtrl', function(){
   });
 
   it('should delete talk', function() {
-    /* TODO: TASK V - DELETE TALK
+    /* TODO: TASK 5 - DELETE TALK
     *  - implement test
     */
   });

@@ -2,7 +2,7 @@
 
 angular.module('lightningtalks')
   .controller('TalkCreateCtrl', function () {
-    /* TODO: TASK II - CREATE TALK
+    /* TODO: TASK 2 - CREATE TALK
     *  - fetch sessions
     *  - create form submit handler
     *  - send talk data to backend
