@@ -105,10 +105,7 @@ REST_FRAMEWORK = {
     )
 }
 
-# TODO: TASK 0 - WARM-UP
-# - increase request delay
-
-REQUEST_DELAY = 0  # apply delay in seconds to all requests, useful for testing
+REQUEST_DELAY = 0.5  # apply delay in seconds to all requests, useful for testing
 
 CORS_ORIGIN_WHITELIST = (
     'localhost:3000',
