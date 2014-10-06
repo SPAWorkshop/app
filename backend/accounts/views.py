@@ -9,14 +9,10 @@ class RegistrationView(generics.CreateAPIView):
     permission_classes = [permissions.AllowAny]
     serializer_class = serializers.UserCreateSerializer
 
-register = RegistrationView.as_view()
-
 
 class LoginView(auth_views.ObtainAuthToken):
     serializer_class = serializers.LoginUserSerializer
 
-
-login = LoginView.as_view()
 
 
 class ProfileView(generics.RetrieveAPIView):
@@ -26,5 +22,3 @@ class ProfileView(generics.RetrieveAPIView):
 
     def get_object(self):
         return self.request.user
-
-profile = ProfileView.as_view()
