@@ -7,7 +7,7 @@ angular.module('lightningtalks', ['ngResource', 'ngRoute', 'ngAnimate', 'toasty'
         templateUrl: 'partials/sessions/session-list.html',
         controller: 'SessionListCtrl'
       })
-      .when('/session/:id', {
+      .when('/sessions/:id', {
         templateUrl: 'partials/sessions/session-detail.html',
         controller: 'SessionDetailCtrl'
       })
