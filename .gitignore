@@ -10,3 +10,4 @@ frontend/app/bower_components
 frontend/app/scripts/settings.js
 
 backend/.db.sqlite3
+backend/lightningtalks/local_settings.py
