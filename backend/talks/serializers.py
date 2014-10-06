@@ -56,7 +56,7 @@ class TalkCreateSerializer(serializers.ModelSerializer):
     def validate_session(self, attrs, field_name):
         # TODO: TASK 3 - LIMIT TALKS
         # - implement validation
-        pass
+        return attrs
 
 
 class TalkUpdateSerializer(serializers.ModelSerializer):
