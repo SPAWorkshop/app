@@ -2,8 +2,8 @@
   <img class="loader__image" src="images/loading-spin.svg">
 </div>
 <div class="sessions" ng-show="sessions.$resolved">
-  <ul class="sessions__list" ng-repeat="session in sessions">
-    <li class="sessions__item">
+  <ul class="sessions__list">
+    <li class="sessions__item" ng-repeat="session in sessions">
       <a href="#/session/{{ session.id }}" class="sessions__talks"><i class="fa fa-bullhorn"></i>
         <span ng-class="{'mark-alert': session.maxTalksReached()}">{{ session.talks_count }}/{{ session.max_talks }}</span>
         talks</a>
