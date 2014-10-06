@@ -132,3 +132,29 @@ don't have `python2`, but there is `python2.7`, please create this link:
 
     $ sudo ln -s `which python2.7` $(dirname `which python2.7`)/python2
     
+### You have problem with `node.js` requirements
+
+You are trying to install `node.js` requirements (`npm install`) and you have
+following errors:
+
+    npm ERR! EEXIST, open '~/.npm/5cde87d1-npm-gulp-util-2-2-20-package-tgz.lock'
+    File exists: ~/.npm/5cde87d1-npm-gulp-util-2-2-20-package-tgz.lock
+    Move it away, and try again. 
+
+You could try to remove `node_modules` folder, clean cache, and install
+everything again:
+
+    ~/spaworkshop/app/frontend (workshopenv) $ rm -r node_modules
+    ~/spaworkshop/app/frontend (workshopenv) $ ../../workshopenv/bin/npm cache clean
+    ~/spaworkshop/app/frontend (workshopenv) $ ../../workshopenv/bin/npm install
+    
+If this doesn't solve the problem, try downgrade `npm` to `1.3` version:
+
+    ~/spaworkshop/app/frontend (workshopenv) $ ../../workshopenv/bin/npm -g install npm@1.3
+
+... or upgrade to `2.1`:
+
+    ~/spaworkshop/app/frontend (workshopenv) $ ../../workshopenv/bin/npm -g install npm@2.1
+    
+After `npm` downgrade/upgrade repeat all above steps (remove `node_modules`
+folder, clean cache, install requirements).
