@@ -12,7 +12,6 @@ class SessionListView(generics.ListAPIView):
     model = Session
     serializer_class = SessionListSerializer
 
-session_list = SessionListView.as_view()
 
 
 # TODO: TASK 1 - SESSION DETAILS
@@ -39,9 +38,6 @@ class TalkListCreateView(generics.ListCreateAPIView):
         return super().get_queryset().filter(author=self.request.user)
 
 
-talk_list = TalkListCreateView.as_view()
-
-
 class TalkUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     model = Talk
     serializer_class = TalkUpdateSerializer
@@ -50,6 +46,3 @@ class TalkUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
         # TODO: TASK 4 - UPDATE TALK
         # - create custom permission (allow modify talk only by author)
     )
-
-
-talk_detail = TalkUpdateDestroyView.as_view()
