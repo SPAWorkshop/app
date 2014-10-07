@@ -8,7 +8,7 @@ angular.module('lightningtalks')
       var user = $resource(settings.baseURL + '/auth/login').save($scope.user);
 
       var onSuccess = function (response) {
-        auth.login(response.token);
+        auth.login(response.auth_token);
         toasty.pop.success(messages.LOGIN_SUCCESS);
         $scope.inProgress = false;
         $location.path('/');

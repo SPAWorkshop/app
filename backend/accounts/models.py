@@ -29,6 +29,7 @@ class User(PermissionsMixin, AbstractBaseUser):
     last_name = models.CharField(max_length=64)
 
     USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['first_name', 'last_name']
 
     objects = UserManager()
 
@@ -40,8 +41,3 @@ class User(PermissionsMixin, AbstractBaseUser):
 
     def get_full_name(self):
         return '%s %s' % (self.first_name, self.last_name)
-
-    # required by django-registration
-    @property
-    def username(self):
-        return self.email
