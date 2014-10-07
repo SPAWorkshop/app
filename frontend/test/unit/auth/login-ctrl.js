@@ -29,7 +29,7 @@ describe('LoginCtrl', function(){
       password: 'test-pass'
     };
     var token = 'test-token';
-    $httpBackend.expectPOST('http://127.0.0.1:8000/api/auth/login', scope.user).respond(200, {token: token});
+    $httpBackend.expectPOST('http://127.0.0.1:8000/api/auth/login', scope.user).respond(200, {auth_token: token});
 
     scope.submit();
 

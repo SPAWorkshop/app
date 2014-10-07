@@ -1,4 +1,5 @@
 django==1.7
-djangorestframework==2.3.14
+djangorestframework==2.4.3
 nodeenv==0.11.0
 django-cors-headers==0.13
+djoser==0.0.3
