@@ -1,5 +1,4 @@
 from accounts.models import User
-from django.core.urlresolvers import reverse
 from lightningtalks.utils import utc_datetime
 from rest_framework.test import APITestCase
 from rest_framework.authtoken.models import Token
@@ -23,20 +22,20 @@ class TestSesssionAPI(APITestCase):
 
     def test_list(self):
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
-        response = self.client.get(reverse('session-list'))
+        response = self.client.get('/api/sessions')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(set([s['name'] for s in response.data]),
                          set(['S1', 'S2', 'S3']))
 
     def test_list_unauthorized(self):
-        response = self.client.get(reverse('session-list'))
+        response = self.client.get('/api/sessions')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(set([s['name'] for s in response.data]),
                          set(['S1', 'S2', 'S3']))
 
     def test_create_should_fail_for_normal_user(self):
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
-        response = self.client.post(reverse('session-list'), {
+        response = self.client.post('/api/sessions', {
             'name': 'LH Session',
             'starts_at': '2014-10-20T20:00:00Z',
         })
@@ -45,27 +44,27 @@ class TestSesssionAPI(APITestCase):
     def test_get(self):
         session = Session.objects.get(name='S1')
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
-        url = reverse('session-detail', kwargs={'pk': session.pk})
+        url = '/api/sessions/' + str(session.pk)
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200, response.data)
 
     def test_get_unauthorized(self):
         session = Session.objects.get(name='S1')
-        url = reverse('session-detail', kwargs={'pk': session.pk})
+        url = '/api/sessions/' + str(session.pk)
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200, response.data)
 
     def test_update_should_fail_for_normal_user(self):
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
         session = Session.objects.get(name='S1')
-        url = reverse('session-detail', kwargs={'pk': session.pk})
+        url = '/api/sessions/' + str(session.pk)
         response = self.client.post(url, {'name': 'Foo sessions'})
         self.assertEqual(response.status_code, 405, response.data)
 
     def test_delete_should_fail_for_normal_user(self):
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
         session = Session.objects.get(name='S1')
-        url = reverse('session-detail', kwargs={'pk': session.pk})
+        url = '/api/sessions/' + str(session.pk)
         response = self.client.delete(url, {'name': 'Foo sessions'})
         self.assertEqual(response.status_code, 405, response.data)
 
@@ -88,13 +87,13 @@ class TestTalkAPI(APITestCase):
         jane = User.objects.create_user('jane@doe.com', 'Jane', 'Doe', 'jd')
         Talk.objects.create(title='T3', author=jane, session=self.session)
 
-        response = self.client.get(reverse('talk-list'))
+        response = self.client.get('/api/talks')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(set([t['title'] for t in response.data]),
                          set(['T1', 'T2']))
 
     def test_create(self):
-        response = self.client.post(reverse('talk-list'), {
+        response = self.client.post('/api/talks', {
             'session': self.session.id,
             'title': 'Joe Talk',
         })
@@ -106,7 +105,7 @@ class TestTalkAPI(APITestCase):
 
     def test_create_unauthorized(self):
         self.client.credentials()  # clear headers
-        response = self.client.post(reverse('talk-list'), {
+        response = self.client.post('/api/talks', {
             'session': self.session.id,
             'title': 'Joe Talk',
         })
@@ -116,7 +115,7 @@ class TestTalkAPI(APITestCase):
         Talk.objects.create(title='T1', author=self.user, session=self.session)
         Talk.objects.create(title='T2', author=self.user, session=self.session)
 
-        response = self.client.post(reverse('talk-list'), {
+        response = self.client.post('/api/talks', {
             'session': self.session.id,
             'title': 'Joe Talk',
         })
@@ -129,7 +128,7 @@ class TestTalkAPI(APITestCase):
                                    author=self.user,
                                    session=self.session)
 
-        url = reverse('talk-detail', kwargs={'pk': talk.id})
+        url = '/api/talks/' + str(talk.id)
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200, response.data)
@@ -142,7 +141,7 @@ class TestTalkAPI(APITestCase):
                                    author=self.user,
                                    session=self.session)
 
-        url = reverse('talk-detail', kwargs={'pk': talk.id})
+        url = '/api/talks/' + str(talk.id)
         response = self.client.put(url, {
             'title': 'TDD',
         })
@@ -160,7 +159,7 @@ class TestTalkAPI(APITestCase):
         start = utc_datetime(2014, 10, 21, 14)
         session2 = Session.objects.create(name='StormTalks', starts_at=start)
 
-        url = reverse('talk-detail', kwargs={'pk': talk.id})
+        url = '/api/talks/' + str(talk.id)
         response = self.client.put(url, {
             'title': 'TDD',
             'session': session2.pk,
@@ -179,7 +178,7 @@ class TestTalkAPI(APITestCase):
                                    author=jane,
                                    session=self.session)
 
-        url = reverse('talk-detail', kwargs={'pk': talk.id})
+        url = '/api/talks/' + str(talk.id)
         response = self.client.put(url, {
             'title': 'TDD',
         })
@@ -193,7 +192,7 @@ class TestTalkAPI(APITestCase):
                                    author=self.user,
                                    session=self.session)
 
-        url = reverse('talk-detail', kwargs={'pk': talk.id})
+        url = '/api/talks/' + str(talk.id)
         response = self.client.delete(url)
         self.assertEqual(response.status_code, 204, response.data)
 
@@ -203,7 +202,7 @@ class TestTalkAPI(APITestCase):
                                    author=jane,
                                    session=self.session)
 
-        url = reverse('talk-detail', kwargs={'pk': talk.id})
+        url = '/api/talks/' + str(talk.id)
         response = self.client.delete(url)
 
         # we are logged in as Joe so we should not be allowed to delete Jane's
