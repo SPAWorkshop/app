@@ -2,9 +2,9 @@
 
 angular.module('lightningtalks')
   .service('Session', function ($resource, settings) {
-    var Service = $resource(settings.baseURL + '/sessions/:id');
+    var Session = $resource(settings.baseURL + '/sessions/:id');
 
-    Service.prototype.maxTalksReached = function () {
+    Session.prototype.maxTalksReached = function () {
       if (this.talks) {
         return (this.talks.length >= this.max_talks);
       } else if (this.talks_count) {
@@ -13,5 +13,5 @@ angular.module('lightningtalks')
       return false;
     };
 
-    return Service;
+    return Session;
   });
