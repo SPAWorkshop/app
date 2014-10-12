@@ -2,16 +2,8 @@
 
 angular.module('lightningtalks')
   .service('Session', function ($resource, settings) {
-    var Session = $resource(settings.baseURL + '/sessions/:id');
-
-    Session.prototype.maxTalksReached = function () {
-      if (this.talks) {
-        return (this.talks.length >= this.max_talks);
-      } else if (this.talks_count) {
-        return (this.talks_count >= this.max_talks);
-      }
-      return false;
-    };
-
-    return Session;
+    /* TODO: TASK 3 - LIMIT TALKS
+    *  - check if session has already maximum number of talks
+    */
+    return $resource(settings.baseURL + '/sessions/:id');
   });

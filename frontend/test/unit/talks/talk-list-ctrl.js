@@ -27,9 +27,14 @@ describe('TalkListCtrl', function(){
   });
 
   it('should delete talk', function() {
-    /* TODO: TASK 5 - DELETE TALK
-    *  - implement test
-    */
+    $httpBackend.expectDELETE('http://127.0.0.1:8000/api/talks/1').respond(200, '');
+    $httpBackend.expectGET('http://127.0.0.1:8000/api/talks').respond(200, []);
+
+    scope.delete({id: 1});
+
+    $httpBackend.flush();
+    expect(toasty.hasMessage(messages.TALK_DELETE_SUCCESS)).toBe(true);
+    expect(scope.talks.length).toBe(0);
   });
 
 });

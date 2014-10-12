@@ -192,7 +192,7 @@ class TestTalkAPI(APITestCase):
                                    author=self.user,
                                    session=self.session)
 
-        url = reverse('talk-detail', kwargs={'pk': talk.id})
+        url = '/api/talks/' + str(talk.id)
         response = self.client.delete(url)
         self.assertEqual(response.status_code, 204, response.data)
 
@@ -202,12 +202,9 @@ class TestTalkAPI(APITestCase):
                                    author=jane,
                                    session=self.session)
 
-        url = reverse('talk-detail', kwargs={'pk': talk.id})
+        url = '/api/talks/' + str(talk.id)
         response = self.client.delete(url)
 
         # we are logged in as Joe so we should not be allowed to delete Jane's
         # talk
         self.assertEqual(response.status_code, 403, response.data)
-        
-    # TODO: TASK 5 - DELETE TALK
-    # - implement test

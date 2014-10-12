@@ -13,7 +13,6 @@ class SessionListView(generics.ListAPIView):
     serializer_class = SessionListSerializer
 
 
-
 # TODO: TASK 1 - SESSION DETAILS
 # - create view (generics.RetrieveAPIView)
 

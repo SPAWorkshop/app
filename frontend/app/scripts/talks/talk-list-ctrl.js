@@ -6,7 +6,14 @@ angular.module('lightningtalks')
 
     $scope.talks = Talk.query();
 
-    /* TODO: TASK 5 - DELETE TALK
-    *  - implement delete function
-    */
+    $scope.delete = function (talk) {
+      talk.deleteInProgress = true;
+
+      var onSuccess = function () {
+        toasty.pop.success(messages.TALK_DELETE_SUCCESS);
+        $scope.talks = Talk.query();
+      };
+
+      Talk.delete({id: talk.id}).$promise.then(onSuccess);
+    };
   });
